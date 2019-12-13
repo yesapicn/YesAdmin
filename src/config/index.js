@@ -2,9 +2,9 @@ export default {
   /**
    * @description 配置显示在浏览器标签的title
    */
-  title: 'iView-admin',
+  title: 'Yesapi-admin',
   /**
-   * @description token在Cookie中存储的天数，默认1天
+   * @description token在Cookie中存储的天数，默认30天
    */
   cookieExpires: 1,
   /**
@@ -22,14 +22,13 @@ export default {
   },
   proxyTable: {
     '/api': {
-      target: "http://hn216.api.yesapi.cn/yesapi/",
-      changeOrigin: true, //开启代理
+      target: 'http://hn216.api.yesapi.cn/yesapi/',
+      changeOrigin: true, // 开启代理
       pathRewrite: {
         '^/api': '/'
       }
     }
-  },  
-
+  },
 
   /**
    * @description 默认打开的首页的路由name值，默认为home

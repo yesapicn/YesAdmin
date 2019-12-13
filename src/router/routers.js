@@ -28,8 +28,8 @@ export default [
     component: () => import('@/view/login/login.vue')
   },
   {
-    path:'/register',
-    name:'register',
+    path: '/register',
+    name: 'register',
     meta: {
       title: 'Register - 注册',
       hideInMenu: true

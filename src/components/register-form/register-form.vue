@@ -23,7 +23,7 @@
           </Input>
         </div>
       </div>
-      
+
     </FormItem>
     <FormItem prop="re_password">
        <div class="flexbox">
@@ -40,6 +40,7 @@
     <FormItem>
       <div class="flexbox">
         <Button class="flexbox-btn" @click="handleSubmit" type="primary" long>注册</Button>
+        <router-link :to="{path:'/login'}">已有账号？前往登录&gt;&gt;</router-link>
       </div>
     </FormItem>
   </Form>
@@ -53,7 +54,7 @@ export default {
         userName: 'super_admin',
         password: '',
         re_password: ''
-      },
+      }
     }
   },
   props: {
@@ -72,8 +73,8 @@ export default {
           { required: true, message: '请输入6位数或以上的字母与数字组合密码', trigger: 'blur' },
           { pattern: /^\S+$/, message: '密码不能含有空格', trigger: 'blur' },
           { pattern: /(?=.*[0-9])(?=.*[a-zA-Z])/, message: '密码必须包含字母和数字', trigger: 'blur' },
-          { pattern: /^[a-zA-Z0-9]{6,12}$/, message: '密码应为6-12位的字母与数字组合', trigger: 'blur' },
-          //todo
+          { pattern: /^[a-zA-Z0-9]{6,12}$/, message: '密码应为6-12位的字母与数字组合', trigger: 'blur' }
+          // todo
         ]
       }
     },
@@ -81,7 +82,7 @@ export default {
       type: Array,
       default: () => {
         return false
-        //todo
+        // todo
       }
     }
   },
@@ -128,5 +129,5 @@ export default {
      height: 34px;
    }
  }
-  
+
 </style>

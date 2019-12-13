@@ -50,7 +50,7 @@ export default {
         userName: 'super_admin',
         password: ''
       },
-      isRemember:false
+      isRemember: false
     }
   },
   computed: {
@@ -89,5 +89,5 @@ export default {
      height: 34px;
    }
  }
-  
+
 </style>

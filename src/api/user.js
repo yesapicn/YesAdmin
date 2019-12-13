@@ -1,16 +1,22 @@
 import axios from '@/libs/api.request'
 
-export const login = ({ username, password }) => {
-  const data = {
-    username,
-    password
-  }
+// 添加请求合法性校验的查询参数
+import validateUrl from './okayapi_config.js'
+
+export const login = (params = { username, password }) => {
+  let url = validateUrl('App.User.Login', params)
   return axios.request({
-    url: '/?s=App.User.Login',
-    data:{
-      'app_key':'F9B20374B4CBD344913900A437BA56A2',
-      ...data
-  },
+    method: 'post',
+    url,
+    params
+  })
+}
+
+export const register = (params = { username, password }) => {
+  let data = setValidate(params)
+  return axios.request({
+    url: 'App.User.Login',
+    data,
     method: 'post'
   })
 }

@@ -4,7 +4,7 @@
 
 <template>
   <div class="login">
-    <div class="login-con"> 
+    <div class="login-con">
       <div class="login-title">YesAdmin-小白后台</div>
       <Card icon="log-in" title="欢迎登录" :bordered="false">
         <div class="form-con">
