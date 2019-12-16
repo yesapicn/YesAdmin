@@ -81,7 +81,9 @@ export default {
     re_passwordRules: {
       type: Array,
       default: () => {
-        return false
+        return [
+          { required: true, message: '请重新输入密码进行校验', trigger: 'blur' },
+        ]
         // todo
       }
     }

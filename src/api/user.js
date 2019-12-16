@@ -13,23 +13,23 @@ export const login = (params = { username, password }) => {
 }
 
 export const register = (params = { username, password }) => {
-  let data = setValidate(params)
+  let url = validateUrl('App.User.Register', params)
   return axios.request({
-    url: 'App.User.Login',
-    data,
-    method: 'post'
+    method: 'post',
+    url,
+    params
   })
 }
 
-export const getUserInfo = (token) => {
-  return axios.request({
-    url: 'get_info',
-    params: {
-      token
-    },
-    method: 'get'
-  })
-}
+// export const getUserInfo = (token) => {
+//   return axios.request({
+//     url: 'get_info',
+//     params: {
+//       token
+//     },
+//     method: 'get'
+//   })
+// }
 
 export const logout = (token) => {
   return axios.request({

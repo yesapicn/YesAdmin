@@ -108,6 +108,36 @@ export default [
     ]
   },
   {
+    path: '/pictures',
+    name: 'pictures',//？其他标签是怎么使用中文的
+    meta: {
+      icon: 'ios-albums' , 
+      title: '素材库'
+    },
+    component: Main,
+    children: [
+      {
+        path: 'pics_upload',
+        name: 'pics_upload',
+        meta: {
+          icon: 'ios-cloud-upload-outline',
+          title: '上传图片'
+        },
+        component: () => import('@/view/components/pics-upload/index.vue')
+      },
+      {
+        path: 'pics_manage',
+        name: 'pics_manage',
+        meta: {
+          icon: 'ios-albums-outline',
+          title: '素材管理'
+        },
+        component: () => import('@/view/components/pics-gallery/index.vue')
+        
+      }
+    ]
+  },
+  {
     path: '/components',
     name: 'components',
     meta: {

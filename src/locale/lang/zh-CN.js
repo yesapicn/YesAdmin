@@ -42,5 +42,8 @@ export default {
   tree_table_page: '树状表格',
   org_tree_page: '组织结构树',
   drag_drawer_page: '可拖动抽屉',
-  tree_select_page: '树状下拉选择器'
+  tree_select_page: '树状下拉选择器',
+  pictures:'素材库',
+  pics_upload:'上传图片',
+  pics_manage:'素材管理'
 }

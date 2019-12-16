@@ -1,7 +1,7 @@
 import {
   login,
   logout,
-  getUserInfo,
+  // getUserInfo,
   getMessage,
   getContentByMsgId,
   hasRead,
@@ -9,7 +9,7 @@ import {
   restoreTrash,
   getUnreadCount
 } from '@/api/user'
-import { setToken, getToken } from '@/libs/util'
+import { setToken, getToken, setUUID, getUUID } from '@/libs/util'
 
 export default {
   state: {
@@ -17,6 +17,7 @@ export default {
     userId: '',
     avatarImgPath: '',
     token: getToken(),
+    uuid: getUUID(),
     access: '',
     hasGetInfo: false,
     unreadCount: 0,
@@ -35,12 +36,18 @@ export default {
     setUserName (state, name) {
       state.userName = name
     },
+    setUserRole (state, role) {
+      state.userRole = role
+    }
+    ,
     setAccess (state, access) {
       state.access = access
     },
     setToken (state, token) {
       state.token = token
-      setToken(token)
+    },
+    setUUID (state, uuid) {
+      state.uuid = uuid
     },
     setHasGetInfo (state, status) {
       state.hasGetInfo = status
@@ -73,6 +80,23 @@ export default {
     messageTrashCount: state => state.messageTrashList.length
   },
   actions: {
+    // 注册
+    handleRegister ({ commit }, { userName, password }) {
+      userName = userName.trim()
+      return new Promise((resolve, reject) => {
+        register({
+          username: userName,
+          password
+        }).then(res => {
+          const data = res.data
+          commit('setToken', data.token) // token?   //todo 解决undefined变成字符串 
+          resolve()
+        }).catch(err => {
+          reject(err)
+        })
+      })
+    },
+    
     // 登录
     handleLogin ({ commit }, { userName, password }) {
       userName = userName.trim()
@@ -81,8 +105,11 @@ export default {
           username: userName,
           password
         }).then(res => {
-          const data = res.data
-          commit('setToken', data.token) // token
+          const data = res.data.data
+          console.log(res)
+          commit('setToken', data.token) // token?   //todo 解决undefined变成字符串 
+          commit('setUUID', data.uuid)
+          commit('setRole', data.role)
           resolve()
         }).catch(err => {
           reject(err)
@@ -94,6 +121,7 @@ export default {
       return new Promise((resolve, reject) => {
         logout(state.token).then(() => {
           commit('setToken', '')
+          commit('setUUID', '')
           commit('setAccess', [])
           resolve()
         }).catch(err => {
@@ -106,25 +134,25 @@ export default {
       })
     },
     // 获取用户相关信息
-    getUserInfo ({ state, commit }) {
-      return new Promise((resolve, reject) => {
-        try {
-          getUserInfo(state.token).then(res => {
-            const data = res.data
-            commit('setAvatar', data.avatar)
-            commit('setUserName', data.name)
-            commit('setUserId', data.user_id)
-            commit('setAccess', data.access)
-            commit('setHasGetInfo', true)
-            resolve(data)
-          }).catch(err => {
-            reject(err)
-          })
-        } catch (error) {
-          reject(error)
-        }
-      })
-    },
+    // getUserInfo ({ state, commit }) {
+    //   return new Promise((resolve, reject) => {
+    //     try {
+    //       getUserInfo(state.token).then(res => {
+    //         const data = res.data
+    //         commit('setAvatar', data.avatar)
+    //         commit('setUserName', data.name)
+    //         commit('setUserId', data.user_id)
+    //         commit('setAccess', data.access)
+    //         commit('setHasGetInfo', true)
+    //         resolve(data)
+    //       }).catch(err => {
+    //         reject(err)
+    //       })
+    //     } catch (error) {
+    //       reject(error)
+    //     }
+    //   })
+    // },
     // 此方法用来获取未读消息条数，接口只返回数值，不返回消息列表
     getUnreadMessageCount ({ state, commit }) {
       getUnreadCount().then(res => {

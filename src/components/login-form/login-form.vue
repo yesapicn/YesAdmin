@@ -15,7 +15,7 @@
       </Input>
     </FormItem>
     <FormItem>
-      <Checkbox v-model="isRemember">记住我的登录</Checkbox>
+      <Checkbox v-model="isRemember">保持登录状态</Checkbox>
       <div class="flexbox">
         <Button class="flexbox-btn" @click="handleSubmit" type="primary" long>登录</Button>
         <router-link :to="{path:'/register'}">还没账号？免费注册&gt;&gt;</router-link>
@@ -47,7 +47,7 @@ export default {
   data () {
     return {
       form: {
-        userName: 'super_admin',
+        userName: 'testman',
         password: ''
       },
       isRemember: false
