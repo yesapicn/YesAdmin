@@ -44,6 +44,6 @@ export default {
   drag_drawer_page: '可拖动抽屉',
   tree_select_page: '树状下拉选择器',
   pictures:'素材库',
-  pics_upload:'上传图片',
-  pics_manage:'素材管理'
+  assets_upload:'上传图片',
+  assets_manage:'素材管理'
 }

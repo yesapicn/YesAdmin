@@ -44,6 +44,6 @@ export default {
   drag_drawer_page: 'Draggable Drawer',
   tree_select_page: 'Tree Selector',
   pictures:'picture',
-  pics_upload:'Picture Upload',
-  pics_manage:'Picture Manage'
+  assets_upload:'Picture Upload',
+  assets_manage:'Picture Manage'
 }

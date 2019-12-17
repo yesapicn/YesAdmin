@@ -29,6 +29,7 @@ export const saveErrorLogger = info => {
   })
 }
 
+//todo 上传图片
 export const uploadImg = formData => {
   return axios.request({
     url: 'image/upload',

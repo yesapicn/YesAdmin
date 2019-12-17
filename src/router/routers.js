@@ -117,22 +117,22 @@ export default [
     component: Main,
     children: [
       {
-        path: 'pics_upload',
-        name: 'pics_upload',
+        path: 'assets_upload',
+        name: 'assets_upload',
         meta: {
           icon: 'ios-cloud-upload-outline',
           title: '上传图片'
         },
-        component: () => import('@/view/components/pics-upload/index.vue')
+        component: () => import('@/view/assets-lib/assets-upload/index.vue')
       },
       {
-        path: 'pics_manage',
-        name: 'pics_manage',
+        path: 'assets_manage',
+        name: 'assets_manage',
         meta: {
           icon: 'ios-albums-outline',
           title: '素材管理'
         },
-        component: () => import('@/view/components/pics-gallery/index.vue')
+        component: () => import('@/view/assets-lib/assets-manage/index.vue')
         
       }
     ]

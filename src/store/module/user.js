@@ -106,10 +106,10 @@ export default {
           password
         }).then(res => {
           const data = res.data.data
-          console.log(res)
+          setToken(data.token)
           commit('setToken', data.token) // token?   //todo 解决undefined变成字符串 
           commit('setUUID', data.uuid)
-          commit('setRole', data.role)
+          commit('setUserRole', data.role)
           resolve()
         }).catch(err => {
           reject(err)
