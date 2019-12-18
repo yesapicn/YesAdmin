@@ -30,8 +30,20 @@
       </div>
     </div>
     <div class="underline">
-      <Upload action="image/upload" :before-upload="beforeUpload">
-        <Button icon="ios-cloud-upload-outline" style="width: 150px;">拉取图片</Button>
+
+      <Upload
+        type="drag"
+        :before-upload="beforeUpload"
+        action="image/upload"
+        v-show="!insideSrc">
+        <div style="padding: 30px 180px">
+            <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
+            <p>点击选取或者拖动图片自此</p>
+        </div>
+     </Upload>
+
+      <Upload action="image/upload" :before-upload="beforeUpload" v-show="insideSrc">
+        <Button icon="ios-cloud-upload-outline" style="width: 150px;">重选图片</Button>
       </Upload>
       <Button style="width: 150px;margin-left: 10px;height: 31.9px" type="primary" @click="crop" v-show="insideSrc">{{ cropButtonText }}</Button>
     </div>
@@ -84,11 +96,13 @@ export default {
   },
   methods: {
     beforeUpload (file) {
+      //使用html5的fileReader将图片转换成base64编码
       const reader = new FileReader()
       reader.readAsDataURL(file)
       reader.onload = (event) => {
         this.insideSrc = event.srcElement.result
       }
+      //禁止上传
       return false
     },
     replace (src) {
@@ -111,8 +125,8 @@ export default {
       this.cropper.clear()
     },
     crop () {
-      this.cropper.getCroppedCanvas().toBlob(blob => {
-        this.$emit('on-crop', blob)
+      this.cropper.getCroppedCanvas().toDataUrl(dataUrl => {
+        this.$emit('on-crop', dataUrl)
       })
     },
   },

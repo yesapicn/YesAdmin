@@ -20,6 +20,8 @@ function enryptData (params) {
   return SIGN
 }
 
+
+//公共参数与接口的拼接
 export default function validateUrl (apiName, params) {
   let SIGN = enryptData(params)
   let url = '?s=' + apiName + '&app_key=' + OKAYAPI_APP_KEY + '&sign=' + SIGN
