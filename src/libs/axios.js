@@ -17,6 +17,7 @@ class HttpRequest {
     this.baseUrl = baseUrl
     this.queue = {}
   }
+  // 获取http请求中的请求配置
   getInsideConfig () {
     const config = {
       baseURL: this.baseUrl,
@@ -27,7 +28,8 @@ class HttpRequest {
     return config
   }
   destroy (url) {
-    delete this.queue[url]
+    delete this.queue[url] // deleted 的用法？ES6class的规范？
+
     if (!Object.keys(this.queue).length) {
       // Spin.hide()
     }

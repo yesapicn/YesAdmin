@@ -38,7 +38,7 @@ export default {
       fileType: '',
       currentOrder: 1,
       page: 1,
-      perpage: 20,
+      perpage: 10,
       orderType: '上传时间降序',
       seqList: [
         {
@@ -88,7 +88,7 @@ export default {
       this.page = page
     },
     search() {
-      data = this._initOption()
+      let data = this._initOption()
 
       getAssetsList(data).then(res => {
         console.log(res)
