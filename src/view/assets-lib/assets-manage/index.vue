@@ -1,59 +1,109 @@
 <template>
   <div class="assets-manage">
     <div class="assets-manage-search">
-        <Input class="assets-manage-input" v-model="search_option1" placeholder="查找：文件名"/>
-        <Input class="assets-manage-input" v-model="search_option2" placeholder="查找：文件分类"/>
+        <Input class="assets-manage-input" v-model="fileName" placeholder="查找：文件名"/>
+        <Input class="assets-manage-input" v-model="fileType" placeholder="查找：文件分类"/>
           <div class="dropdown">
             <Dropdown trigger="click" @on-click="handle_select">
-              <Button class="dropdown-btn">{{sequence}}<Icon type="ios-arrow-down"></Icon></Button>
+              <Button class="dropdown-btn">{{orderType}}<Icon type="ios-arrow-down"></Icon></Button>
               <DropdownMenu slot="list">
-                   <DropdownItem v-for="(item,index) in seqList" :name="item" :key="index">{{item}}</DropdownItem>
+                   <DropdownItem v-for="(item, index) in seqList" :name="index" :key="item.order_type">{{item.name}}</DropdownItem>
               </DropdownMenu>
            </Dropdown>
         </div>
         <Button type="primary" @click="search">搜索</Button>
     </div>
     <div class="assets-collection">
-      <item-card v-for="i in 20" :key="i"></item-card>
+      <item-card v-for="(item, index) in fileList" :key="index" :fileData="item"></item-card>
     </div>
     <div class="pagination">
       <Page :total="100" show-sizer @on-page-size-change='changeSize' @on-change='changePage'/>
     </div> 
-
-    
-    
 
   </div>
 </template>
 
 <script>
 import ItemCard from './item-card.vue'
+import { getAssetsList } from '@/api/data'
 export default {
   components: {
     ItemCard
   },
   data() {
     return {
-      search_option1: '',
-      search_option2: '',
-      sequence: '上传时间降序',
-      seqList: ['上传文件大小降序','上传文件大小升序','上传时间升序','上传文件降序','上传文件升序']
+      fileList: [],
+      total: 0,
+      fileName: '',
+      fileType: '',
+      currentOrder: 1,
+      page: 1,
+      perpage: 20,
+      orderType: '上传时间降序',
+      seqList: [
+        {
+          name:'上传时间降序',
+          order_type: 1
+        },{
+          name:'上传时间升序',
+          order_type: 2
+        },{
+          name: '文件名降序',
+          order_type: 3
+        },{
+          name: '文件名升序',
+          order_type: 4
+        },{
+          name: '文件大小降序',
+          order_type: 5
+        },{
+          name: '文件大小升序',
+          order_type: 6
+        }
+      ]
     }
   },
   methods: {
-    handle_select(name) {
-      this.sequence = name
+    _initOption() { //筛选条件初始化
+      let file_name = this.fileName,
+          file_type = this.fileType,
+          order_type = this.currentOrder,
+          page = this.page,
+          perpage = this.perpage
+
+      //post 参数为空的时候不加入
+      let data = { order_type, page, perpage }
+      file_name? data.file_name = file_name : null
+      file_type? data.file_type = file_type : null
+      return data
     },
-    changeSize(event) {
-      console.log(event)
+    handle_select(index) {
+      this.orderType = this.seqList[index].name
+      this.currentOrder = this.seqList[index].order_type
     },
-    changePage(event) {
-      console.log(event)
+    changeSize(size) {
+      this.perpage = size
+    },
+    changePage(page) {
+      this.page = page
     },
     search() {
-      console.log('//todo 对接接口')
-      //todo 对接接口
+      data = this._initOption()
+
+      getAssetsList(data).then(res => {
+        console.log(res)
+        this.total = res.data.data.total
+        this.fileList = res.data.data.list
+      })
     }
+  },
+  created() {
+    let data = this._initOption()
+    getAssetsList(data).then(res => {
+        console.log(res)
+        this.total = res.data.data.total
+        this.fileList = res.data.data.list
+      })
   },
   
 }

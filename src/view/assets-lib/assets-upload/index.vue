@@ -26,13 +26,20 @@ export default {
     }
   },
   methods: {
-    handleCroped (blob) {
-      const formData = new FormData()
-      formData.append('croppedImg', blob)
+    handleCroped (fileData) {
+      const file = fileData.dataUrl,
+      file_name = fileData.name,
+      file_type = fileData.type
+
+      console.log({ file, file_name, file_type })
 
       //todo 上传图片
-      uploadImg(formData).then(() => {
-        this.$Message.success('Upload success~')
+      uploadImg({ file, file_name, file_type }).then((res) => {
+        if(res.ret == "200"){
+          this.$Message.success('图片上传成功')
+        }else{
+          this.$Message.success(res.msg)
+        }
       })
     }
   }

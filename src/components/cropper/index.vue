@@ -62,10 +62,6 @@ export default {
       type: String,
       default: ''
     },
-    preview: {
-      type: Boolean,
-      default: true
-    },
     moveStep: {
       type: Number,
       default: 4
@@ -78,7 +74,9 @@ export default {
   data () {
     return {
       cropper: null,
-      insideSrc: ''
+      insideSrc: '',
+      fileName: '',
+      fileType: ''
     }
   },
   computed: {
@@ -100,7 +98,10 @@ export default {
       const reader = new FileReader()
       reader.readAsDataURL(file)
       reader.onload = (event) => {
+        console.log(file)
         this.insideSrc = event.srcElement.result
+        this.fileName = file.name
+        this.fileType = file.type
       }
       //禁止上传
       return false
@@ -125,9 +126,15 @@ export default {
       this.cropper.clear()
     },
     crop () {
-      this.cropper.getCroppedCanvas().toDataUrl(dataUrl => {
-        this.$emit('on-crop', dataUrl)
-      })
+      let dataUrl = this.cropper.getCroppedCanvas().toDataURL(),
+          name = this.fileName,
+          type = this.fileType,
+          fileData = {
+            dataUrl,
+            name,
+            type
+          }
+      this.$emit('on-crop', fileData)
     },
   },
   mounted () {

@@ -1,14 +1,13 @@
 import axios from '@/libs/api.request'
 
-// 添加请求合法性校验的查询参数
-import validateUrl from './okayapi_config.js'
+import validateUrl from './okayapi_config.js'// 添加请求合法性校验的查询参数
 
-export const login = (params = { username, password }) => {
-  let url = validateUrl('App.User.Login', params)
+export const login = (data = { username, password }) => {
+  let url = validateUrl('App.User.Login', data)
   return axios.request({
     method: 'post',
     url,
-    params
+    data
   })
 }
 
