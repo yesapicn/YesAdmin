@@ -43,7 +43,15 @@ export default {
   org_tree_page: 'Org Tree',
   drag_drawer_page: 'Draggable Drawer',
   tree_select_page: 'Tree Selector',
-  pictures:'picture',
-  assets_upload:'Picture Upload',
-  assets_manage:'Picture Manage'
+  pictures: 'picture',
+  assets_upload: 'Picture Upload',
+  assets_manage: 'Picture Manage',
+  articles: 'Articles',
+  articles_manage: 'Article Manage',
+  acticle_add: 'Article Add',
+  article_review: 'Article Review',
+  upload_csv: 'Upload CSV',
+  stats: 'Stats',
+  login_stats: 'Login Stats',
+  register_stats: 'Register Stats'
 }

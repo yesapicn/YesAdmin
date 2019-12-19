@@ -22,6 +22,17 @@ export const getAssetsList = (data = { file_name, file_type, order_type, page, p
   })
 }
 
+//获取文章模型数据  model_name= 'okayapi_article'
+export const getArticleList = (data = { model_name: 'okayapi_article', where, page, perpage  }) => {
+  let url = validateUrl('App.Table.FreeQuery', data)
+  return axios.request({
+    method: 'post',
+    url,
+    data
+  })
+}
+
+
 export const getTableData = () => {
   return axios.request({
     url: 'get_table_data',

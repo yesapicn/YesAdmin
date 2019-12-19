@@ -45,5 +45,13 @@ export default {
   tree_select_page: '树状下拉选择器',
   pictures:'素材库',
   assets_upload:'上传图片',
-  assets_manage:'素材管理'
+  assets_manage:'素材管理',
+  articles: '文章管理',
+  articles_manage: '文章管理',
+  acticle_add: '添加文章',
+  article_review: '查看文章',
+  upload_csv: '上传csv文件',
+  stats: '数据统计',
+  login_stats: '登录统计',
+  register_stats: '注册统计'
 }

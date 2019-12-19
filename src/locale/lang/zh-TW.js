@@ -44,6 +44,14 @@ export default {
   drag_drawer_page: '可拖動抽屜',
   tree_select_page: '樹狀下拉選擇器',
   pictures:'素材庫',
-  assets_upload:'上传图片',
-  assets_manage:'素材管理'
+  assets_upload:'上傳圖片',
+  assets_manage:'素材管理',
+  articles: '文章管理',
+  articles_manage: '文章管理',
+  acticle_add: '添加文章',
+  article_review: '查看文章',
+  upload_csv: '上傳csv文件',
+  stats: '數據統計',
+  login_stats: '登錄統計',
+  register_stats: '註冊統計'
 }

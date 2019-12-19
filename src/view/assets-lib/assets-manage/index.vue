@@ -1,8 +1,8 @@
 <template>
   <div class="assets-manage">
     <div class="assets-manage-search">
-        <Input class="assets-manage-input" v-model="fileName" placeholder="查找：文件名"/>
-        <Input class="assets-manage-input" v-model="fileType" placeholder="查找：文件分类"/>
+        文件名：<Input class="assets-manage-input" v-model="fileName" placeholder="查找：文件名"/>
+        文件类型：<Input class="assets-manage-input" v-model="fileType" placeholder="查找：文件分类"/>
           <div class="dropdown">
             <Dropdown trigger="click" @on-click="handle_select">
               <Button class="dropdown-btn">{{orderType}}<Icon type="ios-arrow-down"></Icon></Button>
@@ -13,12 +13,20 @@
         </div>
         <Button type="primary" @click="search">搜索</Button>
     </div>
+    
+    <div class="demo-spin-col" v-if="!fileList">
+      <Spin fix>
+        <Icon type="ios-loading" size=18 class="demo-spin-icon-load"></Icon>
+        <div>资源正在加载中...</div>
+      </Spin>
+    </div>
     <div class="assets-collection">
       <item-card class="assets-collection-item" v-for="(item, index) in fileList" :key="index" :fileData="item"></item-card>
     </div>
     <div class="pagination">
       <Page :total="total" show-sizer @on-page-size-change='changeSize' @on-change='changePage'/>
     </div> 
+
 
   </div>
 </template>
@@ -32,7 +40,7 @@ export default {
   },
   data() {
     return {
-      fileList: [],
+      fileList: null,
       total: 0,
       fileName: '',
       fileType: '',
@@ -143,6 +151,20 @@ export default {
     height: 180px;
     padding: 50px 0 50px 500px;
   }
+
+  .demo-spin-icon-load{
+        margin-bottom: 5px;
+        animation: ani-demo-spin 1s linear infinite;
+    }
+    @keyframes ani-demo-spin {
+        from { transform: rotate(0deg);}
+        50%  { transform: rotate(180deg);}
+        to   { transform: rotate(360deg);}
+    }
+    .demo-spin-col{
+        height: 100px;
+        position: relative;
+    }
 }
   
 </style>

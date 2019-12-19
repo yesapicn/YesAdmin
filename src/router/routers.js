@@ -69,25 +69,6 @@ export default [
     }
   },
   {
-    path: '/join',
-    name: 'join',
-    component: Main,
-    meta: {
-      hideInBread: true
-    },
-    children: [
-      {
-        path: 'join_page',
-        name: 'join_page',
-        meta: {
-          icon: '_qq',
-          title: 'QQ群'
-        },
-        component: () => import('@/view/join-page.vue')
-      }
-    ]
-  },
-  {
     path: '/message',
     name: 'message',
     component: Main,
@@ -108,8 +89,55 @@ export default [
     ]
   },
   {
+    path: '/articles',
+    name: 'articles',
+    meta: {
+      icon: 'ios-book',
+      title: '文章管理'
+    },
+    component: Main,
+    children: [
+      {
+        path: 'articlesManage',
+        name: 'articles_manage',
+        meta: {
+          icon: 'ios-albums-outline',
+          title: '文章管理'
+        },
+        component: () => import('@/view/article-lib/article-manage/index.vue')
+      },
+      {
+        path: 'addActicle',
+        name: 'acticle_add',
+        meta: {
+          icon: 'ios-add-circle-outline',
+          title: '添加文章',
+        },
+        component: () => import('@/view/article-lib/article-add/index.vue')
+      },
+      {
+        path: 'articleReview',
+        name: 'article_review',
+        meta: {
+          icon: 'ios-glasses-outline',
+          title: '查看文章',
+        },
+        component: () => import('@/view/article-lib/article-review')
+      },
+      {
+        path: 'uploadCsv',
+        name: 'upload_csv',
+        meta: {
+          icon: 'ios-cloud-upload-outline',
+          title: '上传Csv文件'
+        },
+        component: () => import('@/view/article-lib/upload-csv')
+      }
+    ]
+  },
+  {
     path: '/pictures',
-    name: 'pictures',//？其他标签是怎么使用中文的
+    name: 'pictures',
     meta: {
       icon: 'ios-albums' , 
       title: '素材库'
@@ -134,6 +162,55 @@ export default [
         },
         component: () => import('@/view/assets-lib/assets-manage/index.vue')
         
+      }
+    ]
+  },
+  {
+    path: '/stats',
+    name: 'stats',
+    meta: {
+      icon: 'ios-stats' , 
+      title: '统计'
+    },
+    component: Main,
+    children: [
+      {
+        path: 'login_stats',
+        name: 'login_stats',
+        meta: {
+          icon: 'ios-stats-outline',
+          title: '登录统计'
+        },
+        component: () => import('@/view/stats/login-stats/index.vue')
+      },
+      {
+        path: 'register_stats',
+        name: 'register_stats',
+        meta: {
+          icon: 'ios-stats-outline',
+          title: '注册统计'
+        },
+        component: () => import('@/view/stats/register-stats/index.vue')
+        
+      }
+    ]
+  },
+  {
+    path: '/join',
+    name: 'join',
+    component: Main,
+    meta: {
+      hideInBread: true
+    },
+    children: [
+      {
+        path: 'join_page',
+        name: 'join_page',
+        meta: {
+          icon: '_qq',
+          title: 'QQ群'
+        },
+        component: () => import('@/view/join-page.vue')
       }
     ]
   },
