@@ -14,10 +14,10 @@
         <Button type="primary" @click="search">搜索</Button>
     </div>
     <div class="assets-collection">
-      <item-card v-for="(item, index) in fileList" :key="index" :fileData="item"></item-card>
+      <item-card class="assets-collection-item" v-for="(item, index) in fileList" :key="index" :fileData="item"></item-card>
     </div>
     <div class="pagination">
-      <Page :total="100" show-sizer @on-page-size-change='changeSize' @on-change='changePage'/>
+      <Page :total="total" show-sizer @on-page-size-change='changeSize' @on-change='changePage'/>
     </div> 
 
   </div>
@@ -83,9 +83,11 @@ export default {
     },
     changeSize(size) {
       this.perpage = size
+      this.search()
     },
     changePage(page) {
       this.page = page
+      this.search()
     },
     search() {
       let data = this._initOption()
@@ -98,12 +100,7 @@ export default {
     }
   },
   created() {
-    let data = this._initOption()
-    getAssetsList(data).then(res => {
-        console.log(res)
-        this.total = res.data.data.total
-        this.fileList = res.data.data.list
-      })
+    this.search()
   },
   
 }
@@ -132,7 +129,14 @@ export default {
     padding-top: 10px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: start;
+
+    &-item {
+      margin-right: 15px;
+    }
+    &-item:nth-child(5n+0) {
+      margin-right: 0;
+    }
   }
 
   .pagination {

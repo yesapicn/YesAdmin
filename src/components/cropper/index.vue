@@ -38,7 +38,7 @@
         v-show="!insideSrc">
         <div style="padding: 30px 180px">
             <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
-            <p>点击选取或者拖动图片自此</p>
+            <p>点击选取或者拖动图片到方框中</p>
         </div>
      </Upload>
 
