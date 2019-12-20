@@ -1,12 +1,13 @@
 <template>
   <div class="item-card">
     <div class="img-container">
-      <img :src="fileData.file_url" alt="">
+      <!-- <img :src="fileData.file_url" alt=""> -->
+      <img :src="file_logo" alt="">
     </div>
     <div class="item-name" :title="fileData.name" @click="showPic">{{fileData.file_name}}</div>
     <div class="item-info">
-      <span>{{fileData.file_type}}</span>
-      <span>大小：<span>{{fileSize}}</span></span>
+      <!-- <span>{{fileData.file_type}}</span> -->
+      <span style="margin-right: 15px;">大小：<span>{{fileSize}}</span></span>
       <span>上传于：<span>{{fileAddTime}}</span></span>
     </div>
     <Input v-model="fileData.file_url" readonly>
@@ -20,17 +21,6 @@ export default {
   props:{
     fileData: {
       type: Object
-    }
-  },
-  data(){
-    return {
-      // fileData: {
-      //   name: 'F9B20374B4CBD344913900A437BA56A2_20191128124203_5863b606b239cdad83640da3e4d009dd.png',
-      //   fileClass: 'image/png',
-      //   capacity: '44KB',
-      //   uploadTime: '2019-11-29',
-      //   file_url: 'http://cd7.yesapi.net/F9B20374B4CBD344913900A437BA56A2_20191128124203_5863b606b239cdad83640da3e4d009dd.png'
-      // }
     }
   },
   methods: {
@@ -64,6 +54,27 @@ export default {
           this.$Message.error('复制失败')
         }
       }
+    },
+    file_logo() {
+      //todo 扩展其他文件的logo 使用swtich方式 
+      if ( /\.(jpe?g|png|gif)$/i.test(this.fileData.file_url) ) {
+          return this.fileData.file_url
+        }else if( /\.(xlsx?)$/i.test(this.fileData.file_url) ){
+          let logo = require('@/assets/icons/file-icon/xls_logo.jpg')
+          return logo
+        }else if( /\.(docx?)$/i.test(this.fileData.file_url) ){
+          let logo = require('@/assets/icons/file-icon/doc_logo.jpg')
+          return logo
+        }else if( /\.(pptx?)$/i.test(this.fileData.file_url) ){
+          let logo = require('@/assets/icons/file-icon/ppt_logo.jpg')
+          return logo
+        }else if( /\.(html)$/i.test(this.fileData.file_url) ){
+          let logo = require('@/assets/icons/file-icon/html_logo.jpg')
+          return logo
+        }else {
+          let logo = require('@/assets/icons/file-icon/others_logo.jpg')
+          return logo
+        }
     }
   },
 }
@@ -102,7 +113,7 @@ export default {
 
     .item-info {
       display: flex;
-      justify-content: space-between;
+      justify-content: start;
       color: #838383;
       margin: 5px 0;
       font-size: 12px;

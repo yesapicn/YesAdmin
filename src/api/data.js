@@ -12,7 +12,18 @@ export const uploadImg = (data = { flie, file_name, file_type }) => {
     data
   })
 }
-//获取图片库
+
+//上传图片
+export const uploadFile = (data = { flie, file_name, file_type }) => {
+  let url = validateUrl('App.CDN.UploadOfficeByBase64', data)
+  return axios.request({
+    method: 'post',
+    url,
+    data
+  })
+}
+
+//获取素材库
 export const getAssetsList = (data = { file_name, file_type, order_type, page, perpage }) => {
   let url = validateUrl('App.CDN.RecordList', data)
   return axios.request({

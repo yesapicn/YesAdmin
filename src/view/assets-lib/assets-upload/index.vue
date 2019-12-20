@@ -14,7 +14,7 @@
 
 <script>
 import Cropper from '@/components/cropper'
-import { uploadImg } from '@/api/data'
+import { uploadImg, uploadFile } from '@/api/data'
 export default {
   name: 'cropper_page',
   components: {
@@ -26,21 +26,33 @@ export default {
     }
   },
   methods: {
-    handleCroped (fileData) {
+    handleCroped (fileData, isImage) {
       const file = fileData.dataUrl,
       file_name = fileData.name,
       file_type = fileData.type
 
-      console.log({ file, file_name, file_type })
+      if (isImage == 1){
+        //上传图片
+        uploadImg({ file, file_name, file_type }).then((res) => {
+          if(res.status == 200){
+            this.$Message.success('图片上传成功')
+          }else{
+            this.$Message.success(res.msg)
+          }
+        })
+      }else if(isImage == 2){
+        // 上传文件
+        console.log("444", uploadFile)
+        uploadFile({ file, file_name, file_type }).then(res=> {
+          if(res.status == 200){
+            this.$Message.success('文件上传成功')
+          }else{
+            this.$Message.success(res.msg)
+          }
+        })
+      }
 
-      //todo 上传图片
-      uploadImg({ file, file_name, file_type }).then((res) => {
-        if(res.ret == "200"){
-          this.$Message.success('图片上传成功')
-        }else{
-          this.$Message.success(res.msg)
-        }
-      })
+      
     }
   }
 }

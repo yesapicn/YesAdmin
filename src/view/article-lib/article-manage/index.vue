@@ -94,10 +94,13 @@ export default {
         key,
         data: this.dataList,
         autoWidth: true,
-        filename: '数据表'
+        filename: '文章管理列表'
       }
       excel.export_array_to_excel(params)
     }
+  },
+  created() {
+    this.search()
   },
 }
 </script>
