@@ -21,7 +21,7 @@
       </Spin>
     </div>
     <div class="assets-collection">
-      <item-card class="assets-collection-item" v-for="(item, index) in fileList" :key="index" :fileData="item"></item-card>
+      <item-card class="assets-collection-item" v-for="(item, index) in fileList" :key="index" :fileData="item" @refresh="search"></item-card>
     </div>
     <div class="pagination">
       <Page :total="total" show-sizer @on-page-size-change='changeSize' @on-change='changePage'/>

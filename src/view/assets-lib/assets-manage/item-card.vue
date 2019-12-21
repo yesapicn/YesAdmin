@@ -1,10 +1,14 @@
 <template>
   <div class="item-card">
-    <div class="img-container">
-      <!-- <img :src="fileData.file_url" alt=""> -->
-      <img :src="file_logo" alt="">
+    <div class="hover-card">
+      <div class="img-container">
+        <img :src="file_logo" alt="">
+      </div>
+      <div class="item-headline" :title="fileData.name" @click="showPic">
+        <p class="item-name">{{fileData.file_name}}</p><Icon class="item-delet" @click.stop="del_item(fileData.id)" type="md-close" />
+      </div>
     </div>
-    <div class="item-name" :title="fileData.name" @click="showPic">{{fileData.file_name}}</div>
+    
     <div class="item-info">
       <!-- <span>{{fileData.file_type}}</span> -->
       <span style="margin-right: 15px;">大小：<span>{{fileSize}}</span></span>
@@ -17,6 +21,7 @@
 </template>
 
 <script>
+import { delet_file } from '@/api/data'
 export default {
   props:{
     fileData: {
@@ -26,6 +31,27 @@ export default {
   methods: {
     showPic() {
       window.open(this.fileData.file_url, '_blank')
+    },
+    del_item(id) {
+      console.log(this.$Modal)
+      this.$Modal.confirm({
+          title: '提示',
+          content: '<p>是否确定删除？</p>',
+          className:"vertical-center-modal",
+          onOk: () => {
+              delet_file(id).then(res=>{
+                console.log(res)
+                if(res.data.ret == 200){
+                  this.$Message.success('文件删除成功')
+                  this.$emit('refresh')
+                }
+              })
+          },
+          onCancel: () => {
+            console.log("cancel")
+              return
+          }
+      }); 
     }
   },
   computed: {
@@ -56,6 +82,7 @@ export default {
       }
     },
     file_logo() {
+
       //todo 扩展其他文件的logo 使用swtich方式 
       if ( /\.(jpe?g|png|gif)$/i.test(this.fileData.file_url) ) {
           return this.fileData.file_url
@@ -102,13 +129,27 @@ export default {
       }
     }
 
-    .item-name {
-      overflow: hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap;
-      font-weight: 600;
-      color: #57a3f3;
+    .item-headline {
+      display: flex;
+      justify-content: space-between;
       cursor: pointer;
+      margin: 0 0 5px 5px;
+
+      .item-name {
+        font-weight: 600;
+        color: #57a3f3;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+        width: 280px;
+      }
+
+      .item-delet {
+        display: none;
+        padding-right: 5px;
+        padding-top: 5px;
+        color: #fff;
+      }
     }
 
     .item-info {
@@ -127,5 +168,28 @@ export default {
       color: #57a3f3;
     }
     
+  }
+
+  .item-card:hover {
+    .hover-card{
+    box-shadow: rgb(223, 223, 223) 1px 1px 4px 4px;
+    background: rgb(25, 92, 146);
+    
+    }
+    .item-name {
+      color: #fff;
+    }
+    .item-delet {
+      display: inline-block;
+    }
+
+    .item-delet:hover {
+      display: inline-block;
+      color: rgb(255, 60, 0);
+    }
+  }
+
+  .ivu-modal-wrap .ivu-modal {
+      margin-top: 200px;
   }
 </style>

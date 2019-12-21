@@ -2,14 +2,14 @@
   <div class="article-add">
     <div class="container">
       <div class="haedline">
-        文章标题：<Input v-model="value" placeholder="编辑文章标题..." style="width: 100%;" />
-        文章副标题：<Input v-model="value" placeholder="编辑文章副标题..." style="width: 100%;" />
+        文章标题：<Input v-model="title" placeholder="编辑文章标题..." style="width: 100%;" />
+        文章副标题：<Input v-model="subtitle" placeholder="编辑文章副标题..." style="width: 100%;" />
       </div>
       <div class="editor">
         <div class="editor-title">文章内容：</div>
         <editor ref="editor" :value="content" @on-change="handleChange"/>
       </div>
-      <Button type="primary" size="large" class="add_btn">添加文章</Button>
+      <Button type="primary" size="large" class="add_btn" @click="publish">添加文章</Button>
     </div>
   </div>
 </template>
@@ -22,13 +22,16 @@ export default {
   },
   data() {
     return {
-      value: '',
-      content: ''
+      title: '',
+      subtitle: ''
     }
   },
   methods: {
     handleChange (html, text) {
       console.log(html, text)
+    },
+    publish() {
+      
     }
   },
 }

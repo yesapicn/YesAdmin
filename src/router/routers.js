@@ -145,15 +145,6 @@ export default [
     component: Main,
     children: [
       {
-        path: 'assets_upload',
-        name: 'assets_upload',
-        meta: {
-          icon: 'ios-cloud-upload-outline',
-          title: '上传图片'
-        },
-        component: () => import('@/view/assets-lib/assets-upload/index.vue')
-      },
-      {
         path: 'assets_manage',
         name: 'assets_manage',
         meta: {
@@ -162,6 +153,15 @@ export default [
         },
         component: () => import('@/view/assets-lib/assets-manage/index.vue')
         
+      },
+      {
+        path: 'assets_upload',
+        name: 'assets_upload',
+        meta: {
+          icon: 'ios-cloud-upload-outline',
+          title: '上传图片'
+        },
+        component: () => import('@/view/assets-lib/assets-upload/index.vue')
       }
     ]
   },
