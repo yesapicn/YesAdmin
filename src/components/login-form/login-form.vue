@@ -15,7 +15,7 @@
       </Input>
     </FormItem>
     <FormItem>
-      <Checkbox v-model="isRemember">保持登录状态</Checkbox>
+      <Checkbox @on-change="toggle">保持登录状态</Checkbox>
       <div class="flexbox">
         <Button class="flexbox-btn" @click="handleSubmit" type="primary" long>登录</Button>
         <router-link :to="{path:'/register'}">还没账号？免费注册&gt;&gt;</router-link>
@@ -24,6 +24,9 @@
   </Form>
 </template>
 <script>
+import config from '@/config'
+const {cookieExpires_long, cookieExpires_short} = config
+
 export default {
   name: 'LoginForm',
   props: {
@@ -50,7 +53,7 @@ export default {
         userName: '',
         password: ''
       },
-      isRemember: false
+      cookiesExp: 1
     }
   },
   computed: {
@@ -67,10 +70,14 @@ export default {
         if (valid) {
           this.$emit('on-success-valid', {
             userName: this.form.userName,
-            password: this.form.password
+            password: this.form.password,
+            cookiesExp: this.cookiesExp
           })
         }
       })
+    },
+    toggle(value) {
+      this.cookiesExp = value? cookieExpires_long: cookieExpires_short
     }
   }
 }

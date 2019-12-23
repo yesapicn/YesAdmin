@@ -1,7 +1,7 @@
 <template>
   <div>
     <Dropdown trigger="click" @on-click="selectLang">
-      <a href="javascript:void(0)">
+      <a style="color: #515a6e" href="javascript:void(0)">
         {{ title }}
         <Icon :size="18" type="md-arrow-dropdown" />
       </a>

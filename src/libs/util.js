@@ -1,14 +1,15 @@
 import Cookies from 'js-cookie'
-// cookie保存的天数
+//import store from '@/store'
 import config from '@/config'
 import { forEach, hasOneOf, objEqual } from '@/libs/tools'
-const { title, cookieExpires, useI18n } = config
+const { title, useI18n } = config
+
 
 export const TOKEN_KEY = 'token'
-export const UUID = 'uuid'
+export const UUID_KEY = 'uuid'
 
-export const setToken = (token) => {
-  Cookies.set(TOKEN_KEY, token, { expires: cookieExpires || 1 })
+export const setToken = (token, cookiesExp) => {
+  Cookies.set(TOKEN_KEY, token, { expires: cookiesExp })
 }
 
 export const getToken = () => {
@@ -18,12 +19,12 @@ export const getToken = () => {
   else return false
 }
 
-export const setUUID = (token) => {
-  Cookies.set(UUID, uuid, { expires: cookieExpires || 1 })
+export const setUUID = (uuid, cookiesExp) => {
+  Cookies.set(UUID_KEY, uuid, { expires: cookiesExp })
 }
 
 export const getUUID = () => {
-  const uuid = Cookies.get(UUID)
+  const uuid = Cookies.get(UUID_KEY)
   if (uuid) return uuid
   else return false
 }

@@ -17,7 +17,7 @@
     <Table border :columns="field" :data="dataList">
       <template slot-scope="{ row, index }" slot="action">
           <Button type="primary" icon="ios-create-outline" style="margin-right: 10px" @click="edit(row)">编辑</Button>
-          <Button type="error" icon="md-close" @click="remove(row)">删除</Button>
+          <Button type="warning" icon="md-close" @click="remove(row)">删除</Button>
       </template>
     </Table>
     <div class="pagination">

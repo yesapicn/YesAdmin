@@ -4,9 +4,10 @@ export default {
    */
   title: 'YesAdmin',
   /**
-   * @description token在Cookie中存储的天数，默认30天
+   * @description token在Cookie中存储的天数，默认保存1天,记住登录状态时保存30天
    */
-  cookieExpires: 1,
+  cookieExpires_short: 1,
+  cookieExpires_long: 30,
   /**
    * @description 是否使用国际化，默认为false
    *              如果不使用，则需要在路由中给需要在菜单中展示的路由设置meta: {title: 'xxx'}

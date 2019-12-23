@@ -32,14 +32,14 @@ export default {
     handleSubmit ({ userName, password }) {
       password = md5(password)
       this.handleRegister({ userName, password }).then((res) => {
-        this.$Message.success(res.data.data.err_msg || "注册成功，为您跳转至登录页面")
         if(res.data.data.err_code == 0) {
+          this.$Message.success("注册成功，为您跳转至登录页面")
           setTimeout(() => {
             this.$router.push({
             name: "login"
-          })
-        }, 1000);
-        }
+            })
+          }, 1000);
+        } else this.$Message.warning(res.data.data.err_msg)
       })
     }
   }

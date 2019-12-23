@@ -73,7 +73,7 @@ export default {
       const msgItem = state[from].splice(index, 1)[0]
       msgItem.loading = false
       state[to].unshift(msgItem)
-    }
+    },
   },
   getters: {
     messageUnreadCount: state => state.messageUnreadList.length,
@@ -99,7 +99,7 @@ export default {
     },
     
     // 登录
-    handleLogin ({ commit }, { userName, password }) {
+    handleLogin ({ commit }, { userName, password, cookiesExp }) {
       userName = userName.trim()
       return new Promise((resolve, reject) => {
         login({
@@ -107,7 +107,7 @@ export default {
           password
         }).then(res => {
           const data = res.data.data
-          setToken(data.token)
+          setToken(data.token, cookiesExp)
           commit('setToken', data.token) // token?   //todo 解决undefined变成字符串 
           commit('setUUID', data.uuid)
           commit('setUserRole', data.role)
