@@ -1,6 +1,7 @@
 import {
   login,
   logout,
+  register,
   // getUserInfo,
   getMessage,
   getContentByMsgId,
