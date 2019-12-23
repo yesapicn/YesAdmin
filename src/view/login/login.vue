@@ -31,10 +31,13 @@ export default {
     ]),
     handleSubmit ({ userName, password }) {
       password = md5(password)
-      this.handleLogin({ userName, password }).then(() => {
+      this.handleLogin({ userName, password }).then((res) => {
+        this.$Message.success(res.data.data.err_msg ||"登录成功")
+        if(res.data.data.err_code == 0) {
           this.$router.push({
             name: this.$config.homeName
           })
+        }
       })
     }
   }

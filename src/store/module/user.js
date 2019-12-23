@@ -91,7 +91,7 @@ export default {
         }).then(res => {
           const data = res.data
           commit('setToken', data.token) // token?   //todo 解决undefined变成字符串 
-          resolve()
+          resolve(res)
         }).catch(err => {
           reject(err)
         })
@@ -111,7 +111,7 @@ export default {
           commit('setToken', data.token) // token?   //todo 解决undefined变成字符串 
           commit('setUUID', data.uuid)
           commit('setUserRole', data.role)
-          resolve()
+          resolve(res)
         }).catch(err => {
           reject(err)
         })
