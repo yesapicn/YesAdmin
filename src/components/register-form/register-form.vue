@@ -51,7 +51,7 @@ export default {
   data () {
     return {
       form: {
-        userName: 'super_admin',
+        userName: '',
         password: '',
         re_password: ''
       }
@@ -70,10 +70,10 @@ export default {
       type: Array,
       default: () => {
         return [
-          { required: true, message: '请输入6位数或以上的字母与数字组合密码', trigger: 'blur' },
+          { required: true, message: '请输入6位数密码', trigger: 'blur' },
           { pattern: /^\S+$/, message: '密码不能含有空格', trigger: 'blur' },
-          { pattern: /(?=.*[0-9])(?=.*[a-zA-Z])/, message: '密码必须包含字母和数字', trigger: 'blur' },
-          { pattern: /^[a-zA-Z0-9]{6,12}$/, message: '密码应为6-12位的字母与数字组合', trigger: 'blur' }
+          // { pattern: /(?=.*[0-9])(?=.*[a-zA-Z])/, message: '密码必须包含字母和数字', trigger: 'blur' },
+          { pattern: /^[a-zA-Z0-9]{6,12}$/, message: '密码位数不能少于6位数', trigger: 'blur' }
           // todo
         ]
       }
@@ -83,6 +83,7 @@ export default {
       default: () => {
         return [
           { required: true, message: '请重新输入密码进行校验', trigger: 'blur' },
+          // { pattern: this.re_password == this.password, message: '两次输入密码不相同', trigger: 'blur' }
         ]
         // todo
       }

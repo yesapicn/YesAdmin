@@ -47,7 +47,7 @@ export default {
   data () {
     return {
       form: {
-        userName: 'testman',
+        userName: '',
         password: ''
       },
       isRemember: false
