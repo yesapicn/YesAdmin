@@ -94,6 +94,8 @@ export default {
         this.fileName = file.name
         this.fileType = file.type
       }
+
+      console.log("base64",this.insideSrc)
       //判断文件类型是否为图片 0无 1为图片 2其他类型文件
       if ( /\.(jpe?g|png|gif)$/i.test(file.name) ) {
           this.isImage = 1

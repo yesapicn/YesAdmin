@@ -43,7 +43,7 @@ export const delet_file = (id) => {
   })
 }
 
-//获取文章模型数据  model_name= 'okayapi_article'
+//获取文章模型中的数据  model_name= 'okayapi_article'
 export const getArticleList = (data = { model_name: 'okayapi_article', where, page, perpage  }) => {
   let url = validateUrl('App.Table.FreeQuery', data)
   return axios.request({
@@ -53,9 +53,19 @@ export const getArticleList = (data = { model_name: 'okayapi_article', where, pa
   })
 }
 
-//删除文章模型数据
+//删除文章模型中的数据
 export const removeArticleData = (data = { model_name: 'okayapi_article', id  }) => {
   let url = validateUrl('App.Table.Delete', data)
+  return axios.request({
+    method: 'post',
+    url,
+    data
+  })
+}
+
+//添加文章模型中的数据
+export const createArticleData = (data = { model_name: 'okayapi_article', id  }) => {
+  let url = validateUrl('App.Table.Create', data)
   return axios.request({
     method: 'post',
     url,

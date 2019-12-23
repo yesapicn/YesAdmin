@@ -9,6 +9,11 @@
         <div class="editor-title">文章内容：</div>
         <editor ref="editor" :value="content" @on-change="handleChange"/>
       </div>
+      <div>
+        <div class="article-label">
+          文章作者：<Input v-model="author" placeholder="编辑文章作者..." style="width:15%; margin-right: 15px;" />文章标签：<Input v-model="label" placeholder="编辑文章标签..." style="width:15%;" />
+        </div>
+      </div>
       <Button type="primary" size="large" class="add_btn" @click="publish">添加文章</Button>
     </div>
   </div>
@@ -16,6 +21,7 @@
 
 <script>
 import Editor from '_c/editor'
+import { createArticleData } from '@/api/data.js'
 export default {
   components: {
     Editor
@@ -23,15 +29,34 @@ export default {
   data() {
     return {
       title: '',
-      subtitle: ''
+      subtitle: '',
+      content:'',
+      author: '',
+      label:''
     }
   },
   methods: {
     handleChange (html, text) {
       console.log(html, text)
+      this.content = html  //bug 推出页面再进入后 data中conten刷新但编辑框内容没刷新
     },
     publish() {
-      
+      let params = {}
+      params.model_name = "okayapi_article"
+      let data = {}
+      data.article_title = this.title
+      data.article_sub_title = this.subtitle
+      data.article_author = this.author
+      data.article_content = this.content
+      data.article_label = this.label
+
+      params.data = JSON.stringify(data)
+
+      console.log(createArticleData, params.data, data)
+
+      createArticleData(params).then(res=>{
+        console.log(res)
+      })
     }
   },
 }
@@ -66,6 +91,10 @@ export default {
     margin-bottom: 10px;
     }
     width: 100%;
+  }
+
+  .article-label {
+    margin-top: 20px;
   }
 
   .add_btn {
