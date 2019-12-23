@@ -31,13 +31,13 @@ export default {
     ]),
     handleSubmit ({ userName, password }) {
       password = md5(password)
-      this.handleRegister({ userName, password }).then(res => {
-        console.log(res)
-        // this.getUserInfo().then(res => {
-        //   this.$router.push({
-        //     name: this.$config.homeName
-        //   })
-        // })
+      this.handleRegister({ userName, password }).then(() => {
+          this.$Message.success('注册成功,为您跳转至登录页面')
+          setTimeout(() => {
+            this.$router.push({
+            name: "login"
+            })
+          }, 1000);
       })
     }
   }

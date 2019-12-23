@@ -79,7 +79,7 @@ export default {
 <style lang="less" scope>
  .flexbox {
    margin-top: 10px;
-   width: 100%;
+   width: 400px;
    display: flex;
    flex-flow: row;
    justify-content: space-between;
