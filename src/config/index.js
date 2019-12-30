@@ -1,3 +1,10 @@
+/*
+ * @Description:
+ * @Author: He Jiecong
+ * @Date: 2019-12-13 18:40:24
+ * @LastEditTime : 2019-12-30 19:33:51
+ * @LastEditors  : He Jiecong
+ */
 export default {
   /**
    * @description 配置显示在浏览器标签的title
@@ -14,6 +21,13 @@ export default {
    *              用来在菜单中显示文字
    */
   useI18n: true,
+  /**
+   * @description 小白后台接用户的APP_KEY和密钥
+   *              用于在请求中生成动态签名
+   */
+  OKAYAPI_APP_KEY: 'F9B20374B4CBD344913900A437BA56A2',
+  OKAYAPI_APP_SECRECT: 'iFESzGkU6Pt6ba22gBY1QGoOtrurhqX9rWcnJ5MhgygOswKHNQPWZ8MKzVuwqW3nIPET',
+
   /**
    * @description api请求基础路径
    */

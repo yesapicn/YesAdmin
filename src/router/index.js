@@ -24,7 +24,7 @@ router.beforeEach((to, from, next) => {
   iView.LoadingBar.start()
   const token = getToken()
   console.log(token, to.name)
-  if ((!token || token == 'undefined') && to.name == REGISTER_PAGE_NAME) {              //遗留问题：token undefined怎么变成了'undefined'
+  if ((!token || token == 'undefined') && to.name == REGISTER_PAGE_NAME) { // 遗留问题：token undefined怎么变成了'undefined'
     next() // 跳转
   } else if ((!token || token == 'undefined') && to.name !== LOGIN_PAGE_NAME) {
     // 未登录且要跳转的页面不是登录页
@@ -43,11 +43,11 @@ router.beforeEach((to, from, next) => {
     if (store.state.user.hasGetInfo) {
       turnTo(to, store.state.user.access, next)
     } else {
-      console.log("222")
-      next() //允许跳转 todo 增加三种身份的浏览权限限制
+      console.log('222')
+      next() // 允许跳转 todo 增加三种身份的浏览权限限制
       // store.dispatch('getUserInfo').then(user => {
-        // 拉取用户信息，通过用户权限和跳转的页面的name来判断是否有权限访问;access必须是一个数组，如：['super_admin'] ['super_admin', 'admin']
-        // turnTo(to, user.access, next)
+      // 拉取用户信息，通过用户权限和跳转的页面的name来判断是否有权限访问;access必须是一个数组，如：['super_admin'] ['super_admin', 'admin']
+      // turnTo(to, user.access, next)
       // }).catch(() => {
       //   setToken('')
       //   next({
