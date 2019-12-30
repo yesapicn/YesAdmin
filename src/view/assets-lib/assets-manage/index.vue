@@ -1,5 +1,11 @@
 <template>
   <div class="assets-manage">
+    <div class="arrow-l">
+        <img src="@/assets/images/left.png">
+    </div>
+    <div class="arrow-r">
+        <img src="@/assets/images/left.png">
+    </div>
     <div class="assets-manage-search">
         文件名：<Input class="assets-manage-input" v-model="fileName" placeholder="查找：文件名"/>
         文件类型：<Input class="assets-manage-input" v-model="fileType" placeholder="查找：文件分类"/>
@@ -13,20 +19,21 @@
         </div>
         <Button type="primary" @click="search">搜索</Button>
     </div>
-    
+
     <div class="demo-spin-col" v-if="!fileList">
       <Spin fix>
         <Icon type="ios-loading" size=18 class="demo-spin-icon-load"></Icon>
         <div>资源正在加载中...</div>
       </Spin>
     </div>
-    <div class="assets-collection">
+    <div class="assets-container" ref="assetsContainer">
+      <div class="assets-collection">
       <item-card class="assets-collection-item" v-for="(item, index) in fileList" :key="index" :fileData="item" @refresh="search"></item-card>
+    </div>
     </div>
     <div class="pagination">
       <Page :total="total" show-sizer @on-page-size-change='changeSize' @on-change='changePage'/>
-    </div> 
-
+    </div>
 
   </div>
 </template>
@@ -38,7 +45,7 @@ export default {
   components: {
     ItemCard
   },
-  data() {
+  data () {
     return {
       fileList: null,
       total: 0,
@@ -50,54 +57,55 @@ export default {
       orderType: '上传时间降序',
       seqList: [
         {
-          name:'上传时间降序',
+          name: '上传时间降序',
           order_type: 1
-        },{
-          name:'上传时间升序',
+        }, {
+          name: '上传时间升序',
           order_type: 2
-        },{
+        }, {
           name: '文件名降序',
           order_type: 3
-        },{
+        }, {
           name: '文件名升序',
           order_type: 4
-        },{
+        }, {
           name: '文件大小降序',
           order_type: 5
-        },{
+        }, {
           name: '文件大小升序',
           order_type: 6
         }
-      ]
+      ],
+      arrowShow: false
     }
   },
   methods: {
-    _initOption() { //筛选条件初始化
+    _initOption () { // 筛选条件初始化
       let file_name = this.fileName,
-          file_type = this.fileType,
-          order_type = this.currentOrder,
-          page = this.page,
-          perpage = this.perpage
+        file_type = this.fileType,
+        order_type = this.currentOrder,
+        page = this.page,
+        perpage = this.perpage
 
-      //post 参数为空的时候不加入
+      // post 参数为空的时候不加入
       let data = { order_type, page, perpage }
-      file_name? data.file_name = file_name : null
-      file_type? data.file_type = file_type : null
+      file_name ? data.file_name = file_name : null
+      file_type ? data.file_type = file_type : null
       return data
     },
-    handle_select(index) {
+    handle_select (index) {
       this.orderType = this.seqList[index].name
       this.currentOrder = this.seqList[index].order_type
     },
-    changeSize(size) {
+    changeSize (size) {
       this.perpage = size
       this.search()
     },
-    changePage(page) {
+    changePage (page) {
       this.page = page
       this.search()
     },
-    search() {
+    search () {
       let data = this._initOption()
 
       getAssetsList(data).then(res => {
@@ -107,10 +115,16 @@ export default {
       })
     }
   },
-  created() {
-    this.search()
+  checkWith () {
+    let containerWidth = this.$refs.assetsContainer.clientWidth
+    if (containerWidth < 1560) {
+      this.arrowShow = true
+    }
   },
-  
+  created () {
+    this.search()
+  }
+
 }
 </script>
 
@@ -118,6 +132,38 @@ export default {
 .assets-manage {
   background-color: #fff;
   padding: 18px;
+
+  .arrow-l{
+      position: fixed;
+      top: 400px;
+      height: 70px;
+      width: 40px;
+      background: #112858;
+      opacity: 0.8;
+      border-radius:  6px;
+      z-index: 1999;
+      padding-top: 14px;
+      img {
+        width: 100%
+      }
+
+    }
+
+    .arrow-r{
+      position: fixed;
+      right: 50px;
+      top: 400px;
+      height: 70px;
+      width: 40px;
+      background: #112858;
+      opacity: 0.8;
+      border-radius:  6px;
+      z-index: 1999;
+      padding-top: 14px;
+      img {
+        width: 100%
+      }
+    }
 
   &-input {
     width: 200px;
@@ -132,19 +178,27 @@ export default {
       text-align: center;
     }
   }
-  .assets-collection {
-    width: 1560px;
-    padding-top: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: start;
+  .assets-container{
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: scroll;
 
-    &-item {
-      margin-right: 15px;
-    }
-    &-item:nth-child(5n+0) {
-      margin-right: 0;
-    }
+    .assets-collection {
+
+       width: 1560px;
+       padding-top: 10px;
+       display: flex;
+       flex-wrap: wrap;
+       justify-content: start;
+
+       &-item {
+         margin-right: 15px;
+       }
+       &-item:nth-child(5n+0) {
+         margin-right: 0;
+       }
+  }
+
   }
 
   .pagination {
@@ -166,5 +220,5 @@ export default {
         position: relative;
     }
 }
-  
+
 </style>
