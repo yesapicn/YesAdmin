@@ -60,6 +60,21 @@ npm run build
     - 查看文章
     - 上传CSV/Excel文件
 
+## 运行效果
+
+登录页：  
+![](http://cdn7.okayapi.com/yesyesapi_20191230183821_318cf4fd4396d7119faf3ad8cc91aa0f.png)
+
+添加文章：  
+![](http://cdn7.okayapi.com/yesyesapi_20191230183840_cae4dcff24a31ad420b72082806faeed.png)
+
+素材库：  
+![](http://cdn7.okayapi.com/yesyesapi_20191230183903_23dfa459cccac9f77abfe949026cf5fd.png)
+
+上传图片：
+![](http://cdn7.okayapi.com/yesyesapi_20191230183921_7a8d12ede52d158799d0dd977a0002ac.png)
+
+
 ## License
 [MIT](http://opensource.org/licenses/MIT)
 
