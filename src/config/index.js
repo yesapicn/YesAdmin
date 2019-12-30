@@ -25,8 +25,8 @@ export default {
    * @description api请求基础路径
    */
   baseUrl: {
-    dev: '/',
-    pro: 'http://pro.api.phalapi.net/'
+    dev: 'http://localhost:8081/',
+    pro: '/'
   },
   proxyTable: {
     '/api': {
