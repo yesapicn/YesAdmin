@@ -1,3 +1,10 @@
+<!--
+ * @Description:
+ * @Author: He Jiecong
+ * @Date: 2019-12-30 17:00:32
+ * @LastEditTime: 2019-12-30 17:31:23
+ * @LastEditors: He Jiecong
+ -->
 <style lang="less">
   @import './login.less';
 </style>
@@ -26,18 +33,18 @@ export default {
   },
   methods: {
     ...mapActions([
-      'handleLogin',
+      'handleLogin'
       // 'getUserInfo'
     ]),
     handleSubmit ({ userName, password, cookiesExp }) {
-      password = md5(password)
+      // password = md5(password)
       this.handleLogin({ userName, password, cookiesExp }).then((res) => {
-        if(res.data.data.err_code == 0) {
-          this.$Message.success("登录成功")
+        if (res.data.data.err_code == 0) {
+          this.$Message.success('登录成功')
           this.$router.push({
             name: this.$config.homeName
           })
-        } else  this.$Message.warning(res.data.data.err_msg)
+        } else this.$Message.warning(res.data.data.err_msg)
       })
     }
   }

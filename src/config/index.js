@@ -1,3 +1,10 @@
+/*
+ * @Description:
+ * @Author: He Jiecong
+ * @Date: 2019-12-30 17:00:32
+ * @LastEditTime : 2019-12-30 18:43:10
+ * @LastEditors  : He Jiecong
+ */
 export default {
   /**
    * @description 配置显示在浏览器标签的title
@@ -18,15 +25,15 @@ export default {
    * @description api请求基础路径
    */
   baseUrl: {
-    dev: 'http://hn216.api.yesapi.cn/yesapi/',
-    pro: 'http://hn216.api.yesapi.cn/yesapi/'
+    dev: '/',
+    pro: 'http://pro.api.phalapi.net/'
   },
   proxyTable: {
     '/api': {
-      target: 'http://hn216.api.yesapi.cn/yesapi/',
+      target: 'http://pro.api.phalapi.net/',
       changeOrigin: true, // 开启代理
       pathRewrite: {
-        '^/api': '/'
+        '^/api': '/api'
       }
     }
   },

@@ -10,7 +10,7 @@ function enryptData (apiName, params) {
   params['s'] = apiName
   params['sign'] = '' // 屏蔽sign参数
 
-  //按字典顺序对参数排序
+  // 按字典顺序对参数排序
   let sdic = Object.keys(params).sort()
   let paramsStrExceptSign = ''
   for (let ki in sdic) {
@@ -22,8 +22,7 @@ function enryptData (apiName, params) {
   return SIGN
 }
 
-
-//公共参数与接口的拼接
+// 公共参数与接口的拼接
 export default function validateUrl (apiName, params) {
   let SIGN = enryptData(apiName, params)
   let url = '?s=' + apiName + '&app_key=' + OKAYAPI_APP_KEY + '&sign=' + SIGN

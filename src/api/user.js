@@ -1,12 +1,19 @@
+/*
+ * @Description:
+ * @Author: He Jiecong
+ * @Date: 2019-12-30 17:00:32
+ * @LastEditTime : 2019-12-30 18:24:41
+ * @LastEditors  : He Jiecong
+ */
 import axios from '@/libs/api.request'
 
-import validateUrl from './okayapi_config.js'// 添加请求合法性校验的查询参数
+// import validateUrl from './okayapi_config.js'// 添加请求合法性校验的查询参数
 
-export const login = (data = { username, password }) => {
-  let url = validateUrl('App.User.Login', data)
+export const login = (data) => {
+  // let url = validateUrl('App.User.Login', data)
   return axios.request({
     method: 'post',
-    url,
+    url: 'api/app.php?service=App.Auth.UserLogin',
     data
   })
 }

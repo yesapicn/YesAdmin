@@ -39,8 +39,8 @@ export default {
     },
     setUserRole (state, role) {
       state.userRole = role
-    }
-    ,
+    },
+
     setAccess (state, access) {
       state.access = access
     },
@@ -73,7 +73,7 @@ export default {
       const msgItem = state[from].splice(index, 1)[0]
       msgItem.loading = false
       state[to].unshift(msgItem)
-    },
+    }
   },
   getters: {
     messageUnreadCount: state => state.messageUnreadList.length,
@@ -84,31 +84,31 @@ export default {
     // 注册
     handleRegister ({ commit }, { userName, password }) {
       userName = userName.trim()
+      let data = new FormData()
+      data.append('username', userName)
+      data.append('password', password)
       return new Promise((resolve, reject) => {
-        register({
-          username: userName,
-          password
-        }).then(res => {
+        register(data).then(res => {
           const data = res.data
-          commit('setToken', data.token) // token?   //todo 解决undefined变成字符串 
+          commit('setToken', data.token) // token?   //todo 解决undefined变成字符串
           resolve(res)
         }).catch(err => {
           reject(err)
         })
       })
     },
-    
+
     // 登录
     handleLogin ({ commit }, { userName, password, cookiesExp }) {
       userName = userName.trim()
+      let data = new FormData()
+      data.append('username', userName)
+      data.append('password', password)
       return new Promise((resolve, reject) => {
-        login({
-          username: userName,
-          password
-        }).then(res => {
+        login(data).then(res => {
           const data = res.data.data
           setToken(data.token, cookiesExp)
-          commit('setToken', data.token) // token?   //todo 解决undefined变成字符串 
+          commit('setToken', data.token) // token?   //todo 解决undefined变成字符串
           commit('setUUID', data.uuid)
           commit('setUserRole', data.role)
           resolve(res)
