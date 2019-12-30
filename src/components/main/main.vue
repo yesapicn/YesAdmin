@@ -46,8 +46,8 @@ import ErrorStore from './components/error-store'
 import { mapMutations, mapActions, mapGetters } from 'vuex'
 import { getNewTagList, routeEqual } from '@/libs/util'
 import routers from '@/router/routers'
-import minLogo from '@/assets/images/logo-min.jpg'
-import maxLogo from '@/assets/images/logo.jpg'
+import minLogo from '@/assets/images/yesapi_admin_min.jpg'
+import maxLogo from '@/assets/images/yesapi_admin.png'
 import './main.less'
 export default {
   name: 'Main',
@@ -87,7 +87,7 @@ export default {
       return list
     },
     menuList () {
-      return this.$store.getters.menuList  //
+      return this.$store.getters.menuList //
     },
     local () {
       return this.$store.state.app.local
