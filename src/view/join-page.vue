@@ -6,7 +6,7 @@
           <img class="qq-group-img" src="http://cdn7.okayapi.com/yesyesapi_20191230181632_e57566d9edd5b142cbf8bfc401d16988.jpeg">
           <row type="flex" justify="center">
             <i-col span="12">
-              <p>QQ 群号：621780943</p>
+              <p>QQ 群号：897815708</p>
             </i-col>
             <i-col span="12"></i-col>
           </row>
