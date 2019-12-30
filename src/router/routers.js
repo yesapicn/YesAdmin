@@ -111,7 +111,7 @@ export default [
         name: 'acticle_add',
         meta: {
           icon: 'ios-add-circle-outline',
-          title: '添加文章',
+          title: '添加文章'
         },
         component: () => import('@/view/article-lib/article-add/index.vue')
       },
@@ -120,7 +120,7 @@ export default [
         name: 'article_review',
         meta: {
           icon: 'ios-glasses-outline',
-          title: '查看文章',
+          title: '查看文章'
         },
         component: () => import('@/view/article-lib/article-review')
       },
@@ -139,7 +139,7 @@ export default [
     path: '/pictures',
     name: 'pictures',
     meta: {
-      icon: 'ios-albums' , 
+      icon: 'ios-albums',
       title: '素材库'
     },
     component: Main,
@@ -152,7 +152,7 @@ export default [
           title: '素材管理'
         },
         component: () => import('@/view/assets-lib/assets-manage/index.vue')
-        
+
       },
       {
         path: 'assets_upload',
@@ -169,7 +169,7 @@ export default [
     path: '/stats',
     name: 'stats',
     meta: {
-      icon: 'ios-stats' , 
+      icon: 'ios-stats',
       title: '统计'
     },
     component: Main,
@@ -191,7 +191,7 @@ export default [
           title: '注册统计'
         },
         component: () => import('@/view/stats/register-stats/index.vue')
-        
+
       }
     ]
   },
@@ -214,6 +214,7 @@ export default [
       }
     ]
   },
+  /**
   {
     path: '/components',
     name: 'components',
@@ -488,6 +489,7 @@ export default [
       }
     ]
   },
+  */
   {
     path: '/multilevel',
     name: 'multilevel',
