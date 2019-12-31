@@ -37,6 +37,23 @@ npm run dev
   OKAYAPI_APP_SECRECT: 'iFESz*********************************************************qW3nIPET',
   }
 
+
+  /**
+   * @description api请求基础路径
+   */
+  baseUrl: {
+    dev: 'http://hn216.api.yesapi.cn/yesapi/',
+    pro: 'http://hn216.api.yesapi.cn/yesapi/'
+  },
+  proxyTable: {
+    '/api': {
+      target: 'http://hn216.api.yesapi.cn/yesapi/',
+      changeOrigin: true, // 开启代理
+      pathRewrite: {
+        '^/api': '/'
+      }
+    }
+  },
 ```
 
 
