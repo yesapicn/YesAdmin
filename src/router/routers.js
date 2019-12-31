@@ -65,7 +65,7 @@ export default [
     meta: {
       title: '文档',
       href: 'https://lison16.github.io/iview-admin-doc/#/',
-      icon: 'ios-book'
+      icon: 'logo-github'
     }
   },
   {
@@ -116,7 +116,7 @@ export default [
         component: () => import('@/view/article-lib/article-add/index.vue')
       },
       {
-        path: 'articleReview',
+        path: 'articleReview/:id',
         name: 'article_review',
         meta: {
           icon: 'ios-glasses-outline',

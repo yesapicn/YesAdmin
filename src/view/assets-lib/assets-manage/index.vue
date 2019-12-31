@@ -1,11 +1,10 @@
 <template>
   <div class="assets-manage">
-    <div class="arrow-l">
-        <img src="@/assets/images/left.png">
+    <div class="arrows" v-if="arrowShow">
+      <div class="arrow-l" @mouseover="scroll('l')"><img src="@/assets/images/left.png"></div>
+      <div class="arrow-r" @mouseover="scroll('r')"><img src="@/assets/images/right.png"></div>
     </div>
-    <div class="arrow-r">
-        <img src="@/assets/images/left.png">
-    </div>
+
     <div class="assets-manage-search">
         文件名：<Input class="assets-manage-input" v-model="fileName" placeholder="查找：文件名"/>
         文件类型：<Input class="assets-manage-input" v-model="fileType" placeholder="查找：文件分类"/>
@@ -41,6 +40,7 @@
 <script>
 import ItemCard from './item-card.vue'
 import { getAssetsList } from '@/api/data'
+import { scrollTo } from '@/libs/util'
 export default {
   components: {
     ItemCard
@@ -76,7 +76,8 @@ export default {
           order_type: 6
         }
       ],
-      arrowShow: false
+      arrowShow: false,
+      containerEle: {}
     }
   },
   methods: {
@@ -113,16 +114,31 @@ export default {
         this.total = res.data.data.total
         this.fileList = res.data.data.list
       })
-    }
-  },
-  checkWith () {
-    let containerWidth = this.$refs.assetsContainer.clientWidth
-    if (containerWidth < 1560) {
-      this.arrowShow = true
+    },
+    checkWidth () {
+      let containerWidth = this.$refs.assetsContainer.clientWidth
+      if (containerWidth < 1560) {
+        this.arrowShow = true
+      }
+      console.log(containerWidth, this.arrowShow)
+    },
+    scroll (direct) {
+      let ele = this.containerEle
+      let eleWidth = this.$refs.assetsContainer.clientWidth
+      let sLeft = ele.scrollLeft
+      if (direct === 'l') {
+        scrollTo(ele, sLeft, 0, 1000)
+      } else if (direct === 'r') {
+        scrollTo(ele, sLeft, eleWidth, 2000)
+      }
     }
   },
   created () {
     this.search()
+  },
+  mounted () {
+    this.checkWidth()
+    this.containerEle = document.querySelector('.assets-container')
   }
 
 }
@@ -139,8 +155,8 @@ export default {
       height: 70px;
       width: 40px;
       background: #112858;
-      opacity: 0.8;
-      border-radius:  6px;
+      opacity: 0.6;
+      border-radius:  4px;
       z-index: 1999;
       padding-top: 14px;
       img {
@@ -156,13 +172,17 @@ export default {
       height: 70px;
       width: 40px;
       background: #112858;
-      opacity: 0.8;
-      border-radius:  6px;
+      opacity: 0.6;
+      border-radius:  4px;
       z-index: 1999;
       padding-top: 14px;
       img {
         width: 100%
       }
+    }
+
+    .arrow-l:hover,.arrow-r:hover {
+      opacity: 1;
     }
 
   &-input {
@@ -180,7 +200,7 @@ export default {
   }
   .assets-container{
     width: 100%;
-    overflow-y: auto;
+    overflow-y: hidden;
     overflow-x: scroll;
 
     .assets-collection {

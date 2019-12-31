@@ -1,3 +1,10 @@
+<!--
+ * @Description:
+ * @Author: He Jiecong
+ * @Date: 2019-12-13 18:40:24
+ * @LastEditTime: 2019-12-31 15:57:18
+ * @LastEditors: He Jiecong
+ -->
 <template>
     <div :class="classes" :style="styles" @click="back">
         <slot>
@@ -8,7 +15,7 @@
     </div>
 </template>
 <script>
-import { scrollTop } from '@/libs/util'
+import { scrollTo } from '@/libs/util'
 import { on, off } from '@/libs/tools'
 const prefixCls = 'ivu-back-top'
 
@@ -82,7 +89,7 @@ export default {
     back () {
       let target = typeof this.container === 'string' ? this.containerEle : (document.documentElement || document.body)
       const sTop = target.scrollTop
-      scrollTop(this.containerEle, sTop, 0, this.duration)
+      scrollTo(this.containerEle, sTop, 0, this.duration)
       this.$emit('on-click')
     }
   }

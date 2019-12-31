@@ -4,18 +4,21 @@
         文章ID：<Input class="article-manage-input" v-model="art_ID" placeholder="查找：文章ID"/>
         标题：<Input class="article-manage-input" v-model="art_title" placeholder="查找：文章标题"/>
         标签：<Input class="article-manage-input" v-model="art_label" placeholder="查找：文章分类"/>
-        创建时间：<DatePicker type="daterange" 
-        :start-date="new Date()" 
-        placement="bottom-end" 
-        placeholder="Select date" 
+        创建时间：<DatePicker type="daterange"
+        :start-date="new Date()"
+        placement="bottom-end"
+        placeholder="Select date"
         style="width: 200px; margin-right:12px"
         @on-change="selectDate"
         ></DatePicker>
-        
+
         <Button type="primary" @click="search">搜索</Button>
     </div>
     <Table border :columns="field" :data="dataList">
-      <template slot-scope="{ row, index }" slot="action">
+      <template slot-scope="{ row }" slot="title">
+          <router-link class="article-link" :to="{path:'/articles/articleReview/'+ row.id}" alt='点击查看文章'>{{row.article_title}}<Icon type="ios-eye" /></router-link>
+      </template>
+      <template slot-scope="{ row }" slot="action">
           <Button type="primary" icon="ios-create-outline" style="margin-right: 10px" @click="edit(row)">编辑</Button>
           <Button type="warning" icon="md-close" @click="remove(row)">删除</Button>
       </template>
@@ -23,7 +26,7 @@
     <div class="pagination">
       <Page :total="total" show-sizer @on-page-size-change='changeSize' @on-change='changePage'/>
     </div>
-    <Button type="primary" icon="md-download" @click="output">导出为csv文件</Button> 
+    <Button type="primary" icon="md-download" @click="output">导出为csv文件</Button>
   </div>
 </template>
 
@@ -31,7 +34,7 @@
 import { getArticleList, removeArticleData } from '@/api/data'
 import excel from '@/libs/excel'
 export default {
-  data() {
+  data () {
     return {
       total: 0,
       page: 1,
@@ -39,11 +42,12 @@ export default {
       art_ID: '',
       art_title: '',
       art_label: '',
-      dateRange:'',
+      dateRange: '',
       field: [
         {
           title: '文章标题',
-          key: 'article_title'
+          key: 'article_title',
+          slot: 'title'
         },
         {
           title: '作者',
@@ -74,29 +78,29 @@ export default {
     }
   },
   methods: {
-    _initOption(){
-      //sql中where的参数格式参考 http://yesapi.cn/docs/#/v2.0/table_sql
+    _initOption () {
+      // sql中where的参数格式参考 http://yesapi.cn/docs/#/v2.0/table_sql
       let data = {}
       data.page = this.page
       data.perpage = this.pageSize
       let filter = []
-      this.art_ID? filter.push(["id","=",this.art_ID]) : filter.push(["id",">","0"])
-      this.art_title && filter.push(["article_title","LIKE",this.art_title])
-      this.art_label && filter.push(["article_label","LIKE",this.art_label])
-      this.dateRange && filter.push(["article_post_time","BETWEEN",this.dateRange])
+      this.art_ID ? filter.push(['id', '=', this.art_ID]) : filter.push(['id', '>', '0'])
+      this.art_title && filter.push(['article_title', 'LIKE', this.art_title])
+      this.art_label && filter.push(['article_label', 'LIKE', this.art_label])
+      this.dateRange && filter.push(['article_post_time', 'BETWEEN', this.dateRange])
       data.where = filter
-      data.model_name= 'okayapi_article'
+      data.model_name = 'okayapi_article'
       return data
     },
-    selectDate(e){
+    selectDate (e) {
       let dateRange = []
-      dateRange[0] = e[0] + " 00:00"
-      dateRange[1] = e[1] + " 23:59"
+      dateRange[0] = e[0] + ' 00:00'
+      dateRange[1] = e[1] + ' 23:59'
       this.dateRange = dateRange
     },
-    search() {
+    search () {
       let data = this._initOption()
-      getArticleList(data).then(res=>{
+      getArticleList(data).then(res => {
         let dataList = res.data.data.list
         // for(let key in dataList[0]) {
         //   field.push({ title: key, key: key })
@@ -104,20 +108,19 @@ export default {
         this.dataList = dataList
         console.log(dataList)
       })
-
     },
-    changeSize(size) {
+    changeSize (size) {
       this.pageSize = size
       this.search()
     },
-    changePage(page) {
+    changePage (page) {
       this.page = page
       this.search()
     },
-    output() {
+    output () {
       let title = [],
-          key = []
-      this.field.forEach(e=>{
+        key = []
+      this.field.forEach(e => {
         title.push(e.title)
         key.push(e.key)
       })
@@ -130,28 +133,29 @@ export default {
       }
       excel.export_array_to_excel(params)
     },
-    edit(row) {
-      removeArticleData({model_name: 'okayapi_article', id: row.id}).then(res=>{
-        if(res.ret == 200) {
+    edit (row) {
+      removeArticleData({ model_name: 'okayapi_article', id: row.id }).then(res => {
+        if (res.ret == 200) {
           this.$Message.success('图片上传成功')
-          }else{
-            this.$Message.success(res.msg)
-          }
+        } else {
+          this.$Message.success(res.msg)
+        }
       })
     },
-    remove(row) {
-      removeArticleData({model_name: 'okayapi_article', id: row.id}).then(res=>{
-        if(res.ret == 200) {
-          this.$Message.success('图片上传成功')
-          }else{
-            this.$Message.success(res.msg)
-          }
+    remove (row) {
+      console.log(row)
+      removeArticleData({ model_name: 'okayapi_article', id: row.id }).then(res => {
+        if (res.ret === 200) {
+          this.$Message.success('文章删除成功')
+        } else {
+          this.$Message.success(res.msg)
+        }
       })
     }
   },
-  created() {
+  created () {
     this.search()
-  },
+  }
 }
 </script>
 
@@ -177,19 +181,18 @@ export default {
       text-align: center;
     }
   }
-  .article-collection {
-    width: 1560px;
-    padding-top: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: start;
+  .article-link {
+    color: #112858;
+    font-weight: 600;
 
-    &-item {
-      margin-right: 15px;
+    .ivu-icon{
+      font-size: 18px;
+      color: #2e4f97
     }
-    &-item:nth-child(5n+0) {
-      margin-right: 0;
-    }
+  }
+
+  .article-link:hover {
+    text-decoration: underline;
   }
 
   .pagination {

@@ -26,23 +26,23 @@ export default {
   components: {
     Editor
   },
-  data() {
+  data () {
     return {
       title: '',
       subtitle: '',
-      content:'',
+      content: '',
       author: '',
-      label:''
+      label: ''
     }
   },
   methods: {
     handleChange (html, text) {
       console.log(html, text)
-      this.content = html  //bug 推出页面再进入后 data中conten刷新但编辑框内容没刷新
+      this.content = html // bug 推出页面再进入后 data中conten刷新但编辑框内容没刷新
     },
-    publish() {
+    publish () {
       let params = {}
-      params.model_name = "okayapi_article"
+      params.model_name = 'okayapi_article'
       let data = {}
       data.article_title = this.title
       data.article_sub_title = this.subtitle
@@ -54,11 +54,13 @@ export default {
 
       console.log(createArticleData, params.data, data)
 
-      createArticleData(params).then(res=>{
+      createArticleData(params).then(res => {
         console.log(res)
       })
+      this.$refs.editor.value = ''
+      this.$router.push({ name: 'articles_manage' })
     }
-  },
+  }
 }
 </script>
 

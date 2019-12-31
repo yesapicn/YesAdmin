@@ -1,9 +1,8 @@
 import Cookies from 'js-cookie'
-//import store from '@/store'
+// import store from '@/store'
 import config from '@/config'
 import { forEach, hasOneOf, objEqual } from '@/libs/tools'
 const { title, useI18n } = config
-
 
 export const TOKEN_KEY = 'token'
 export const UUID_KEY = 'uuid'
@@ -363,8 +362,8 @@ export const localRead = (key) => {
   return localStorage.getItem(key) || ''
 }
 
-// scrollTop animation
-export const scrollTop = (el, from = 0, to, duration = 500, endCallback) => {
+// scrollTo animation
+export const scrollTo = (el, from = 0, to, duration = 500, endCallback) => {
   if (!window.requestAnimationFrame) {
     window.requestAnimationFrame = (
       window.webkitRequestAnimationFrame ||
@@ -392,7 +391,7 @@ export const scrollTop = (el, from = 0, to, duration = 500, endCallback) => {
     if (el === window) {
       window.scrollTo(d, d)
     } else {
-      el.scrollTop = d
+      el.scrollTo(d, d)
     }
     window.requestAnimationFrame(() => scroll(d, end, step))
   }
