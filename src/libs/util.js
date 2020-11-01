@@ -4,8 +4,8 @@ import config from '@/config'
 import { forEach, hasOneOf, objEqual } from '@/libs/tools'
 const { title, useI18n } = config
 
-export const TOKEN_KEY = 'token'
-export const UUID_KEY = 'uuid'
+export const TOKEN_KEY = 'app_token' // 区分不同的应用
+export const UUID_KEY = 'app_uuid' // 区分不同的应用
 
 export const setToken = (token, cookiesExp) => {
   Cookies.set(TOKEN_KEY, token, { expires: cookiesExp })

@@ -25,19 +25,19 @@ export default {
    * @description 小白后台接用户的APP_KEY和密钥
    *              用于在请求中生成动态签名
    */
-  OKAYAPI_APP_KEY: 'F9B20374B4CBD344913900A437BA56A2',
-  OKAYAPI_APP_SECRECT: 'iFESzGkU6Pt6ba22gBY1QGoOtrurhqX9rWcnJ5MhgygOswKHNQPWZ8MKzVuwqW3nIPET',
+  OKAYAPI_APP_KEY: '16BD4337FB1D355902E0502AFCBFD4DF', // TODO: 你的app_key
+  OKAYAPI_APP_SECRECT: 'vL1UcBrUalTYr7N39joqGzYHNMcSk28qfir7OJIuSxVAzPcLpd8WVCPtDzLcS', // TODO: 仅本地开发调试需要，构建时可置空
 
   /**
    * @description api请求基础路径
    */
   baseUrl: {
-    dev: 'http://hn216.api.yesapi.cn/yesapi/',
-    pro: 'http://hn216.api.yesapi.cn/yesapi/'
+    dev: 'http://api.yesapi.cn/yesapi/', // TODO：你的小白接口域名
+    pro: '/yesapi/'// 正式域名，不需要修改
   },
   proxyTable: {
     '/api': {
-      target: 'http://hn216.api.yesapi.cn/yesapi/',
+      target: 'http://hn216.api.yesapi.cn/yesapi/', // TODO：你的小白接口域名
       changeOrigin: true, // 开启代理
       pathRewrite: {
         '^/api': '/'

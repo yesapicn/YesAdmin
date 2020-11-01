@@ -7,9 +7,12 @@ import { setToken, getToken, canTurnTo, setTitle } from '@/libs/util'
 import config from '@/config'
 const { homeName } = config
 
+const baseUrl = process.env.NODE_ENV === 'production' ? '/admin-api_demo/' : '/' // 注意区分本地和线上的环境
+
 Vue.use(Router)
 const router = new Router({
   routes,
+  base: baseUrl,
   mode: 'history'
 })
 const LOGIN_PAGE_NAME = 'login'

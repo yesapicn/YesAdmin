@@ -13,8 +13,8 @@ const resolve = dir => {
 // 需要将它改为'/my-app/'
 // iview-admin线上演示打包路径： https://file.iviewui.com/admin-dist/
 const BASE_URL = process.env.NODE_ENV === 'production'
-  ? '/'
-  : '/'
+  ? '/admin-api_demo/' // 线上的托管环境的根目录，最终正式的访问链接是 http://open.yesapi.cn/admin-你的果创云登录账号/
+  : '/' // 本地根目录
 
 module.exports = {
   // Project deployment base
