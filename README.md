@@ -12,7 +12,7 @@ YesAdmin 小后台，基于iview-admin和小白接口，无须后端、免服务
 
 特点： 
  + 本地开发调试：可以在本地使用iview-admin进行业务功能开发和调试  
- + 果创云托管运行：构建打包后上传到果创云，即可运行使用  
+ + 果创云托管运行：构建打包后上传到果创云，即可访问使用  
 
 ## 技术栈
  + [iview-admin开源框架](https://github.com/iview/iview-admin)
