@@ -121,6 +121,8 @@ npm run dev
 cnpm run dev
 ```
 
+![](http://cd8.yesapi.net/yesyesapi_20201101122517_8d8bcdec427098d21f18bd321c14c4e4.png)  
+
 ### 运行效果
 
 登录页：  
@@ -167,6 +169,8 @@ npm run build
 # 构建 
 cnpm run build
 ```
+
+![](http://cd8.yesapi.net/yesyesapi_20201101122638_8790eafe586cd6aae669b6b2455c1ed3.png)  
 
 构建后，把dist目录打包：  
 ![](http://cd8.yesapi.net/yesyesapi_20201101121506_466df0921ede2c84de89253b9d0db25c.png)  
