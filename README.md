@@ -54,6 +54,7 @@ cnpm run dev
 
 ![](http://cd8.yesapi.net/yesyesapi_20201101115924_3e4826550b3de93ffbf72aeb7cde93c0.png)  
 
+> 体验账号：api_demo，密码：123456 。使用前，请[注册](http://open.yesapi.cn/index.php?r=user/registration)你自已的果创云账号。 
 
 ### 小后台根目录配置
 在本地，修改配置文件：./vue.config.js  
@@ -176,7 +177,9 @@ cnpm run build
 ![](http://cd8.yesapi.net/yesyesapi_20201101121506_466df0921ede2c84de89253b9d0db25c.png)  
 
 登录果创云平台，上传发布：  
-todo
+![](http://cd8.yesapi.net/yesyesapi_20201101154254_424a4a8794fcc1f5c88e3434ff842ae7.png)  
+
+> 发布页面：[http://open.yesapi.cn/?r=App/Admin](http://open.yesapi.cn/?r=App/Admin)  
 
 发布后，正式环境访问效果：  
 ![](http://cd8.yesapi.net/yesyesapi_20201101122116_294baadabc26b5d0af49b6f8b88b4f4a.png)  
