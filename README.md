@@ -184,7 +184,7 @@ cnpm run build
 发布后，正式环境访问效果：  
 ![](http://cd8.yesapi.net/yesyesapi_20201101122116_294baadabc26b5d0af49b6f8b88b4f4a.png)  
 
-
+发布后，就可以给你的团队使用啦~！  
 
 ## License
 [MIT](http://opensource.org/licenses/MIT)
