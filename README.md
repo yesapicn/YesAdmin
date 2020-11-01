@@ -136,7 +136,7 @@ cnpm run dev
 > 提示：这是一个数据模型的例子，可根据需要修改，实现数据的后台管理，包括增删改查。  
 
 素材库：  
-![](http://cdn7.okayapi.com/yesyesapi_20191230183903_23dfa459cccac9f77abfe949026cf5fd.png)  
+![](http://cd8.yesapi.net/yesyesapi_20201101163207_7f1fb039c39fe85fbdd6a6516f4b041c.png)  
 
 上传图片：
 ![](http://cdn7.okayapi.com/yesyesapi_20191230183921_7a8d12ede52d158799d0dd977a0002ac.png)  
