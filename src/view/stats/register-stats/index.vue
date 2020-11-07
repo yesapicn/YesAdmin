@@ -82,7 +82,7 @@ export default {
       let option = {
         // 标题
         title: {
-          text: '注册统许计',
+          text: '注册统计',
           subtext: '会员每天注册的情况'
         },
         tooltip: {
