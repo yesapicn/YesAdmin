@@ -5,7 +5,7 @@
  * @LastEditTime : 2019-12-30 19:54:46
  * @LastEditors  : He Jiecong
  -->
-# YesAdmin 开源小后台
+# YesAdmin 开源小后台 v1.2
 
 
 YesAdmin 小后台，基于iview-admin和小白接口，无须后端、免服务器，快速开发你的业务管理后台！  
@@ -19,11 +19,14 @@ YesAdmin 小后台，基于iview-admin和小白接口，无须后端、免服务
  + 【纯前端开发】本地开发调试：可以在本地使用iview-admin进行业务功能开发和调试  
  + 【后端云低代码】果创云托管运行：构建打包后上传到果创云，即可访问使用  
 
-## 技术栈
- + [iview-admin开源框架](https://github.com/iview/iview-admin)
- + [小白开放接口（可免费注册和使用）](http://api.yesapi.cn/docs.php)
+> Github源代码：https://github.com/yesapicn/YesAdmin  
+> 在线体验：http://open.yesapi.cn/admin-api_demo/ （测试账号密码：dogstar / 123456）  
 
-## 本地开发
+
+## 使用教程 
+
+### 第一步，下载源代码  
+
 ```bush
 # 克隆项目
 git clone git@github.com:yesapicn/YesAdmin.git
@@ -51,7 +54,7 @@ cnpm run dev
 
 ```
 
-## 配置
+### 第二步，修改配置
 
 使用前，可先在[果创云](http://open.yesapi.cn/index.php?r=user/registration)免费注册你的账号，方便存放你自己的数据。注册激活成功后换成你的接口域名，```app_key```和密钥。  
 
@@ -59,9 +62,7 @@ cnpm run dev
 
 ![](http://cd8.yesapi.net/yesyesapi_20201101115924_3e4826550b3de93ffbf72aeb7cde93c0.png)  
 
-> 体验账号：api_demo，密码：123456 。使用前，请[注册](http://open.yesapi.cn/index.php?r=user/registration)你自已的果创云账号。 
-
-### 小后台根目录配置
+#### 小后台根目录配置
 在本地，修改配置文件：./vue.config.js  
 ```
 const BASE_URL = process.env.NODE_ENV === 'production'
@@ -71,7 +72,7 @@ const BASE_URL = process.env.NODE_ENV === 'production'
 
 > 温馨提示：把上面的```/admin-api_demo/```换成```/admin-你的果创云登录账号/```。  
 
-### 接口配置  
+#### API接口配置  
 
 在本地，修改配置文件：./src/config/index.js;
 ```javascript
@@ -107,7 +108,7 @@ const BASE_URL = process.env.NODE_ENV === 'production'
  + baseUrl.dev  
  + proxyTable.target  
 
-### 路由配置
+#### 路由配置
 在本地，修改路由配置文件：./src/ruoter/index.js  
 ```
 const baseUrl = process.env.NODE_ENV === 'production' ? '/admin-api_demo/' : '/' // 注意区分本地和线上的环境
@@ -115,7 +116,7 @@ const baseUrl = process.env.NODE_ENV === 'production' ? '/admin-api_demo/' : '/'
 
 > 温馨提示：把上面的```/admin-api_demo/```换成```/admin-你的果创云登录账号/```。  
 
-### 本地运行  
+### 第三步，本地运行  
 修改上面配置后，运行命令：  
 ```bash
 # 开发
@@ -129,7 +130,7 @@ cnpm run dev
 
 ![](http://cd8.yesapi.net/yesyesapi_20201101122517_8d8bcdec427098d21f18bd321c14c4e4.png)  
 
-### 运行效果
+#### 运行效果
 
 登录页：  
 ![](http://cdn7.okayapi.com/yesyesapi_20191230183821_318cf4fd4396d7119faf3ad8cc91aa0f.png)  
@@ -153,7 +154,7 @@ cnpm run dev
 注册统计：  
 ![](http://cd8.yesapi.net/yesyesapi_20201107135547_abedc40b775c65479cb9b28386921aab.png)  
 
-### 功能列表
+## 功能列表
 
 - 登录 / 注册
   - 登录（使用应用云会员登录） 
@@ -201,7 +202,49 @@ cnpm run build
 
 发布后，就可以给你的团队使用啦~！  
 
+
+## 开发文档  
+
+### 如何调用API接口？  
+
+当你需要请求其他小白接口时，首先在./src/api目录下进行接口的封装，例如参考统计接口：  
+```javascript
+import axios from '@/libs/api.request'
+
+import validateUrl from './okayapi_config.js'// 添加请求合法性校验的查询参数
+
+export const GetDailyRegister = (data = { start_date, end_date }) => {
+  let url = validateUrl('App.Statistics.GetDailyRegister', data)
+  return axios.request({
+    method: 'post',
+    url,
+    data
+  })
+}
+```
+
+封装好API调用后，就可以在需要的地方进行调用，传递参数并获取结果，例如：  
+```javascript
+import { GetDailyRegister } from '@/api/stats'
+
+...
+
+  methods: {
+    getQuery () {
+      const formdata = new FormData()
+      formdata.append('start_date', this.dateRange[0])
+      formdata.append('end_date', this.dateRange[1])
+      GetDailyRegister(formdata).then(res => {
+        // 打印API结果
+        console.log(res)
+      })
+    },
+```
+
+## 技术栈
+ + [iview-admin开源框架](https://github.com/iview/iview-admin)
+ + [小白接口](http://api.yesapi.cn/docs.php)
+
 ## License
 [MIT](http://opensource.org/licenses/MIT)
 
-Copyright (c) 2019-present, 广州果创网络科技有限公司
