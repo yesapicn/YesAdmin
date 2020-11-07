@@ -5,7 +5,7 @@
 <template>
   <div class="login">
     <div class="login-con">
-      <div class="login-title">YesAdmin-小白后台</div>
+      <div class="login-title">YesAdmin-小后台</div>
       <Card icon="log-in" title="欢迎注册" :bordered="false">
         <div class="form-con">
           <register-form @on-success-valid="handleSubmit"></register-form>
