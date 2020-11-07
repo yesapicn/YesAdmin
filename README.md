@@ -171,7 +171,9 @@ cnpm run dev
     - 查看文章
     - 上传CSV/Excel文件
   
-> 在线免费安装[文章的数据模型](http://open.yesapi.cn/?r=Data/DemoModelsInstall&model_name=okayapi_article)。  
+
+在线免费安装[文章的数据模型](http://open.yesapi.cn/?r=Data/DemoModelsInstall&model_name=okayapi_article)。你可以根据自己的需要自定义添加数据模型。  
+![](http://cd8.yesapi.net/yesyesapi_20201107155557_0780cb6a20486177b4dcdcf75eec136d.png)  
 
 更多后台功能，可自行根据业务需要开发。  
 
