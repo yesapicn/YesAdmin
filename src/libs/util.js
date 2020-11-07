@@ -409,3 +409,68 @@ export const setTitle = (routeItem, vm) => {
   const resTitle = pageTitle ? `${title} - ${pageTitle}` : title
   window.document.title = resTitle
 }
+
+
+/**
+ * 默认的时间区间
+ */
+export const defaultDateRange = () => {
+  let starttime = ''
+  let endtime = ''
+  const date = new Date()
+  // 获取当前时间的年份转为字符串
+  const year = date.getFullYear().toString()
+  // 获取月份，由于月份从0开始，此处要加1，判断是否小于10，如果是在字符串前面拼接'0'
+  const month = date.getMonth() + 1 < 10
+    ? '0' + (date.getMonth() + 1).toString()
+    : (date.getMonth() + 1).toString()
+  // 获取天，判断是否小于10，如果是在字符串前面拼接'0'
+  const da =
+   date.getDate() < 10
+     ? '0' + (date.getDate() - 7).toString()
+     : (date.getDate() - 7).toString()
+  const endda =
+   date.getDate() < 10
+     ? '0' + date.getDate().toString()
+     : date.getDate().toString()
+  const hour = date.getHours()
+  const minute = date.getMinutes()
+  const second = date.getSeconds()
+  // var hour = '09:30:00'
+  const start = `${year}-${month}-${da} ${hour}:${minute}:${second}`
+  const end = `${year}-${month}-${endda} ${hour}:${minute}:${second}`
+  if (date.getDate() === 31) {
+    // 判断本月天数等于31天时 让天数减30,月份+2
+    const Luna =
+   date.getMonth() + 1 < 10
+     ? '0' + (date.getMonth() + 2).toString()
+     : (date.getMonth() + 2).toString()
+    const day =
+   date.getDate() < 10
+     ? '0' + (date.getDate() - 30).toString()
+     : (date.getDate() - 30).toString()
+    const end2 = `${year}-${Luna}-${day} ${hour}:${minute}:${second}`
+    starttime = start
+    endtime = end2
+    // this.endtime = [start, end2] // 将值设置给插件绑定的数据
+  } else if (date.getDate() === 30) {
+    // 判断本月天数等于30天时 让天数减29,月份+2
+    const Luna =
+   date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 2).toString()
+     : (date.getMonth() + 2).toString()
+    const day =
+   date.getDate() < 10
+     ? '0' + (date.getDate() - 29).toString()
+     : (date.getDate() - 29).toString()
+    const end3 = `${year}-${Luna}-${day} ${hour}:${minute}:${second}`
+    // this.starttime = [start, end3] // 将值设置给插件绑定的数据
+    starttime = start
+    endtime = end3
+  } else {
+    // 字符串拼接，开始时间，结束时间
+    // this.endtime = [start, end] // 将值设置给插件绑定的数据
+    starttime = start
+    endtime = end
+  }
+  return { starttime, endtime }
+}
