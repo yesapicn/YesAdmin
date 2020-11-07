@@ -5,7 +5,7 @@
  * @LastEditTime : 2019-12-30 19:54:46
  * @LastEditors  : He Jiecong
  -->
-# YesAdmin 小后台
+# YesAdmin 开源小后台
 
 
 YesAdmin 小后台，基于iview-admin和小白接口，无须后端、免服务器，快速开发你的业务管理后台！  
