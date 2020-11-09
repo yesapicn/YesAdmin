@@ -243,6 +243,19 @@ import { GetDailyRegister } from '@/api/stats'
     },
 ```
 
+## 本项目用到的小白接口
+ + [2001 会员注册接口](http://api.yesapi.cn/docs-api-App.User.Register.html)  
+ + [2003 会员登录接口](http://api.yesapi.cn/docs-api-App.User.Login.html)  
+ + [1602 会员注册统计接口](http://api.yesapi.cn/docs-api-App.Statistics.GetDailyRegister.html)  
+ + [1603 会员登录统计接口](http://api.yesapi.cn/docs-api-App.Statistics.GetDailyLoginReport.html)  
+ + [203 base64图片上传接口](http://api.yesapi.cn/docs-api-App.CDN.UploadImgByBase64.html)  
+ + [207 根据ID删除图片或文件接口](http://api.yesapi.cn/docs-api-App.CDN.DeleteById.html)  
+ + [210 获取文件的文件类型列表](http://api.yesapi.cn/docs-api-App.CDN.RecordFileTypeList.html)  
+ + [1801 创建新数据接口](http://api.yesapi.cn/docs-api-App.Table.Create.html)  
+ + [1822 分页查询列表数据接口](http://api.yesapi.cn/docs-api-App.Table.FreeQuery.html)  
+ + [1812 精确取数据接口](http://api.yesapi.cn/docs-api-App.Table.Get.html)  
+ + [1815 精确删除数据接口 App.Table.Delete](http://api.yesapi.cn/docs-api-App.Table.Delete.html)  
+ 
 ## 技术栈
  + [iview-admin开源框架](https://github.com/iview/iview-admin)
  + [小白接口](http://api.yesapi.cn/docs.php)
