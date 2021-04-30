@@ -24,6 +24,9 @@
     "iview-area": "^1.5.17",
     "js-cookie": "^2.2.0",
     "js-md5": "^0.7.3",
+    "less-loader": "^5.0.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^8.0.2",
     "simplemde": "^1.11.2",
     "sortablejs": "^1.7.0",
     "tree-table-vue": "^1.1.0",
@@ -46,7 +49,6 @@
     "chai": "^4.1.2",
     "eslint-plugin-cypress": "^2.0.1",
     "less": "^2.7.3",
-    "less-loader": "^4.0.5",
     "lint-staged": "^6.0.0",
     "mockjs": "^1.0.1-beta3",
     "vue-template-compiler": "^2.5.13"
